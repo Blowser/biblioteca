@@ -1,51 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Acción - Tienda de Videojuegos</title>
 </head>
 <body>
 
-    <!-- Encabezado principal del sitio -->
-    <header>
-        <h1>Title of the Website</h1>
+    <div class="container">
+        <!-- Barra lateral de categorías -->
         <nav>
+            <h3>Categorías</h3>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#">Todos</a></li>
+                <li><a href="#">Terror</a></li>
+                <li><a href="#">Suspenso</a></li>
+                <li><a href="#">Mundo abierto</a></li>
+                <li><a href="#">Supervivencia</a></li>
+                <li><a href="#">Acción</a></li>
+                <li><a href="#">Carreras</a></li>
+                <li><a href="#">Deportes</a></li>
+                <li><a href="#">Rol</a></li>
             </ul>
         </nav>
-    </header>
 
-    <!-- Sección principal del contenido -->
-    <main>
-        <section id="home">
-            <h2>Welcome to Our Website</h2>
-            <p>This is the home section where you can introduce your site.</p>
-        </section>
+        <!-- Contenido principal -->
+        <main>
+            <div>
+                <a href="#">Iniciar sesión</a>
+            </div>
 
-        <section id="about">
-            <h2>About Us</h2>
-            <p>Information about your company or website.</p>
-        </section>
+            <h1>Acción</h1>
 
-        <section id="services">
-            <h2>Our Services</h2>
-            <p>Description of the services offered.</p>
-        </section>
-    </main>
+            <!-- Barra de búsqueda -->
+            <form>
+                <input type="search" placeholder="Buscar">
+                <button type="submit">Buscar</button>
+            </form>
 
-    <!-- Sección de contacto o pie de página -->
-    <footer>
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>Ways to reach out to you.</p>
-        </section>
-        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
-    </footer>
+            <!-- Lista de juegos -->
+            <section>
+                <ul>
+                    <li>
+                        <img src="gta-v.jpg" alt="GTA V">
+                        <div>
+                            <h2>GTA V</h2>
+                            <p>CLP$ 35.000</p>
+                        </div>
+                        <a href="#">Ver Detalles</a>
+                    </li>
+                    <li>
+                        <img src="assassins-creed.jpg" alt="Assassin's Creed">
+                        <div>
+                            <h2>Assassin's Creed</h2>
+                            <p>CLP$ 45.000</p>
+                        </div>
+                        <a href="#">Ver Detalles</a>
+                    </li>
+                    <li>
+                        <img src="payday.jpg" alt="PayDAY 2">
+                        <div>
+                            <h2>PayDAY 2</h2>
+                            <p>CLP$ 4.400</p>
+                        </div>
+                        <a href="#">Ver Detalles</a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
 
 </body>
 </html>
