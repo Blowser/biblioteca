@@ -1,0 +1,20 @@
+/* FONDO */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.background {
+    background-image: url('imagenes/blue_body_top.jpg'); /* Ruta a imagen de fondo */
+    background-size: cover; /* Ajusta la imagen para que cubra toda el área */
+    background-position: center; /* Centra la imagen en la página */
+    background-attachment: fixed; /* Mantiene la imagen fija cuando se hace scroll */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    height: 100vh; /* Asegura que el contenedor cubra toda la altura de la ventana */
+    width: 100vw; /* Asegura que el contenedor cubra toda la anchura de la ventana */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+}
+
+.content {
+    padding: 20px;
+}
