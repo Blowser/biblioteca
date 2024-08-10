@@ -1,0 +1,31 @@
+/* navlateral.css */
+nav {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 10px;
+}
+
+nav h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+nav ol {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ol li {
+    margin: 10px 0;
+}
+
+nav ol li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+nav ol li a:hover {
+    background-color: #ddd;
+    padding: 5px;
+}
