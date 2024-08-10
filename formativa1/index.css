@@ -1,78 +1,37 @@
-* {
-    margin: 0;
-    padding: 0;
-}
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #030000b0;
+#categorias {
+    text-align: center; /* Centrar el título */
+    color: #ffffff; /* Letras color blanco*/
 }
-
-nav {
-    width: 100%;
-    padding: 20px 20px;
-    text-align: center;
-    background-color: #e0e0e0;
-
-}
-/* Estilo barra de buscador */
-input[type="search"] {
-    width: 200px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-button#userProfile {
-    padding: 8px 16px;
-    margin-left: 8px;
-    background-color: #ccc;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-button#userProfile:hover {
-    background-color: #bbb;
-}
-
-main {
+/* Contenedor del buscador */
+#barrabuscar {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
+    justify-content: center; /* Centrar el contenedor */
+    align-items: center; /* Alinear verticalmente */
 }
 
-h1#categoriesHeading {
-    font-size: 32px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
+/*LISTA DE CATEGORÍAS*/
 ul {
-    list-style-type: none;
-    width: 300px;
+    list-style-type: none; /* Eliminar los asteriscos */
+    text-align: center; /* Centrar la lista */
 }
 
-/* Efectos lista de categorías*/
-li a {
-    display: block;
-    text-decoration: none;
-    padding: 15px;
-    font-size: 18px;
-    color: #000;
-    background-color: #fff;
-    border: 2px solid #000;
-    border-radius: 4px;
-    text-align: center;
+/*ENLACES*/
+a {
+    color: lightskyblue; /* Enlaces con color */
+    font-weight: bolder; 
+    text-decoration: none; /* Quitar el subrayado */
+    display: block; /* Hacer que el enlace ocupe todo el botón */
+    padding: 10px; /* Espaciado interno */
+    background-color:rgba(0, 128, 128, 0.25); /* Fondo oscuro para cada categoría, le puse transparencia */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-bottom: 10px; /* Espacio entre los botones */
+    width: 300px; /* Ajustar el ancho del bloque */
+    margin-left: auto; /* Centrar horizontalmente */
+    margin-right: auto; /* Centrar horizontalmente */
+    
 }
-/* Efecto al poner el mouse encima de un enlace */
-li a:hover {
-    background-color: #000;
-    color: #fff;
-}
-
-
-
+/* EFECTO AL PASAR EL MOUSE ENCIMA DEL ENLACE*/
+a:hover {
+    background-color: teal; /* Cambiar el fondo al pasar el ratón */
+    color:whitesmoke;
