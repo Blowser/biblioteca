@@ -29,7 +29,7 @@ a {
     width: 300px; /* Ajustar el ancho del bloque */
     margin-left: auto; /* Centrar horizontalmente */
     margin-right: auto; /* Centrar horizontalmente */
-    
+    text-align: center/*Centrar el texto al medio;*/
 }
 /* EFECTO AL PASAR EL MOUSE ENCIMA DEL ENLACE*/
 a:hover {
