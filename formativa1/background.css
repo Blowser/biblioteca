@@ -3,7 +3,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
-
+/* APLICA A LA CLASE BACKGROUND*/
 .background {
     background-image: url('imagenes/blue_body_top.jpg'); /* Ruta a imagen de fondo */
     background-size: cover; /* Ajusta la imagen para que cubra toda el área */
