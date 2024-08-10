@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #030000b0;
+}
+
+nav {
+    width: 100%;
+    padding: 20px 20px;
+    text-align: center;
+    background-color: #e0e0e0;
+
+}
+/* Estilo barra de buscador */
+input[type="search"] {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+button#userProfile {
+    padding: 8px 16px;
+    margin-left: 8px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button#userProfile:hover {
+    background-color: #bbb;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+h1#categoriesHeading {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+ul {
+    list-style-type: none;
+    width: 300px;
+}
+
+/* Efectos lista de categorías*/
+li a {
+    display: block;
+    text-decoration: none;
+    padding: 15px;
+    font-size: 18px;
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 4px;
+    text-align: center;
+}
+/* Efecto al poner el mouse encima de un enlace */
+li a:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+
+
