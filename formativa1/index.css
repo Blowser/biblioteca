@@ -33,5 +33,5 @@ a {
 }
 /* EFECTO AL PASAR EL MOUSE ENCIMA DEL ENLACE*/
 a:hover {
-    background-color: teal; /* Cambiar el fondo al pasar el ratón */
+    background-color: rgb(40, 160, 250); /* Cambiar el fondo al pasar el ratón */
     color:whitesmoke;}
