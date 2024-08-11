@@ -44,6 +44,6 @@ a {
 }
 /* EFECTO AL PASAR EL MOUSE ENCIMA DEL ENLACE*/
 a:hover {
-    background-color: teal; /* Cambiar el fondo al pasar el ratón */
+    background-color:lightskyblue; /* Cambiar el fondo al pasar el ratón */
     color:whitesmoke;}
     li{display:inline-block;}
