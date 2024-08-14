@@ -1,17 +1,17 @@
 #titulo {
-    height:5vh;
+    height:2vh;
     text-align: center; /* Centrar el título */
     color: #ffffff; /* Letras color blanco*/
 }
 header {
     background-color: hsla(0, 0%, 0%, 0.2);
-    height: 25vh; /* El header ocupa el 20% de la altura de la ventana */
+    height: 23vh; /* El header ocupa el 20% de la altura de la ventana */
     text-align: center; /* Centrar el título y el logo */
 
 }
     #logoweb {
-        max-height: 75%; /* Asegura que no exceda el header */
-        width:35%;
+        max-height: 80%; /* Asegura que no exceda el header */
+        width:30%;
     }
 #categorias {
     text-align: center; /* Centrar el título */
