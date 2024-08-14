@@ -10,7 +10,7 @@ body {
     background-position: center; /* Centra la imagen en la página */
     background-attachment: fixed; /* Mantiene la imagen fija cuando se hace scroll */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
-    height: 100vh; /* Asegura que el contenedor cubra toda la altura de la ventana */
+    min-height: 100vh; /* Asegura que el contenedor cubra ALMENOS toda la altura de la ventana */
     width: 100vw; /* Asegura que el contenedor cubra toda la anchura de la ventana */
     overflow: hidden; /* Oculta cualquier contenido que se desborde */
 }
