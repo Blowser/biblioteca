@@ -3,11 +3,12 @@
     text-align: center; /* Centrar el título */
     color: #ffffff; /* Letras color blanco*/
 }
+#logoweb{    height: 23vh; /* El header ocupa el 25% de la ventana  en total*/
+    }
 header {
     background-color: hsla(0, 0%, 0%, 0.2);
-    height: 23vh; /* El header ocupa el 20% de la altura de la ventana */
     text-align: center; /* Centrar el título y el logo */
-
+/* CON ESTOS CAMBIOS, EL LOGO Y EL TITULO OCUPAN UN 25% DE LA PÁGINA TOTAL*/
 }
     #logoweb {
         max-height: 80%; /* Asegura que no exceda el header */
