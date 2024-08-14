@@ -1,4 +1,8 @@
-
+header {
+    text-align: center; /* Centrar el título y el logo */
+    padding:10px;
+    background-color: hsla(0, 0%, 0%, 0.2);
+    color: #ffffff; /* Letras color blanco*/}
 #categorias {
     text-align: center; /* Centrar el título */
     color: #ffffff; /* Letras color blanco*/
