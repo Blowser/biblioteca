@@ -1,49 +1,70 @@
 #categoria {
-    text-align: center; /* Centrar el título */
-    color: #ffffff; /* Letras color blanco*/
+    text-align: center;
+    color: #ffffff;
 }
 
-/* Contenedor del buscador */
 #barrabuscar {
     display: flex;
-    justify-content: center; /* Centrar el contenedor */
-    align-items: center; /* Alinear verticalmente */
-}
-#precio1{    text-align: center; /* Centrar el título */
-    color: #ffffff; /* Letras color blanco*/}
-#precio2{    text-align: center; /* Centrar el título */
-    color: #ffffff; /* Letras color blanco*/}
-#titulo1{    text-align: center; /* Centrar el título */
-        color: #ffffff; /* Letras color blanco*/}
-#titulo2{    text-align: center; /* Centrar el título */
-        color: #ffffff; /* Letras color blanco*/}
-
-
-/*LISTA DE CATEGORÍAS*/
-ul {
-    list-style-type: none; /* Eliminar los asteriscos */
-    text-align: center; /* Centrar la lista */
-    
+    justify-content: center;
+    align-items: center;
 }
 
-/*ENLACES*/
+.row {
+    list-style-type: none;
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 a {
-    color: lightskyblue; /* Enlaces con color */
+    color: lightskyblue;
     font-weight: bolder; 
-    text-decoration: none; /* Quitar el subrayado */
-    display: block; /* Hacer que el enlace ocupe todo el botón */
-    padding: 10px; /* Espaciado interno */
-    background-color:rgba(0, 128, 128, 0.25); /* Fondo oscuro para cada categoría, le puse transparencia */
-    border-radius: 5px; /* Bordes redondeados */
-    margin-bottom: 10px; /* Espacio entre los botones */
-    width: 300px; /* Ajustar el ancho del bloque */
-    margin-left: auto; /* Centrar horizontalmente */
-    margin-right: auto; /* Centrar horizontalmente */
-    text-align: center;
-    
+    text-decoration: none;
 }
-/* EFECTO AL PASAR EL MOUSE ENCIMA DEL ENLACE*/
+
 a:hover {
-    background-color:rgb(40, 160, 250); /* Cambiar el fondo al pasar el ratón */
-    color:whitesmoke;}
-    li{display:inline-block;}
+    background-color: rgb(40, 160, 250);
+    color: whitesmoke;
+}
+
+.card {
+    padding:5px;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.15); /* Fondo transparente similar al background */
+    border: none; /* Elimina los bordes de la card */
+}
+
+.card-img-top {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+    text-align: center; /* Centra el texto */
+    color: #ffffff;
+
+    background-color: transparent; /* Fondo transparente */
+}
+
+.card-body h5,
+.card-body p {
+    margin: 5px 0; /* Espaciado entre el título y el texto */
+}
+
+.card .btn-primary {
+    background-color: rgba(0, 128, 128, 0.75);
+    border-color: rgba(0, 128, 128, 0.75);
+}
+
+.card .btn-primary:hover {
+    background-color: rgb(40, 160, 250);
+    border-color: rgb(40, 160, 250);
+}
+
