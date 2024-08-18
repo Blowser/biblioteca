@@ -1,0 +1,49 @@
+/*CENTRAR EL VIDEO*/
+#video-container {
+    text-align: center;
+    margin: 20px 0;
+}
+#contenedor{background-color: hsla(0, 0%, 0%, 0.2);
+    width:60%;
+    margin: 0 auto;
+    
+}
+#descripcion {
+    padding: 20px;
+    margin: 20px auto;
+    width: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center; /* Centrar el título */
+    color: #ffffff; /* Letras color blanco*/
+}
+
+#detalles-juego {
+    text-align: center; /* Centrar el título */
+    color: #ffffff; /* Letras color blanco*/
+    list-style-type: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: auto;
+    display:grid; /*Para que los detalles se muestren en 3 filas*/
+}
+
+/*PARA EL BOTON REGRESAR */
+#regresar {
+    color: lightskyblue; /* Enlaces con color */
+    font-weight: bolder; 
+    text-decoration: none; /* Quitar el subrayado */
+    display: block; /* Hacer que el enlace ocupe todo el botón */
+    padding: 10px; /* Espaciado interno */
+    background-color:rgba(0, 128, 128, 0.25); /* Fondo oscuro para cada categoría, le puse transparencia */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-bottom: 10px; /* Espacio entre los botones */
+    width: 100px; /* Ajustar el ancho del bloque */
+    margin-left: auto; /* Centrar horizontalmente */
+    margin-right: auto; /* Centrar horizontalmente */
+    text-align: center;
+    
+}
+/* EFECTO AL PASAR EL MOUSE ENCIMA DEL ENLACE*/
+#regresar:hover {
+    background-color:rgb(40, 160, 250); /* Cambiar el fondo al pasar el ratón */
+    color:whitesmoke;}
+    li{display:inline-block;}
