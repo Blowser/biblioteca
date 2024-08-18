@@ -1,14 +1,17 @@
-html, body {  /*PARA QUE EL BACKGROUND CUBRA TODA LA PÁGINA, NO SOLAMENTE HASTA EL FORMULARIO*/
+/* Hacer que el fondo cubra toda la página, no solo hasta el formulario */
+html, body {
     height: 100%;
     margin: 0;
 }
 
 .background {
     background: linear-gradient(135deg, #0f1e2e 0%, #09203f 100%);
-    min-height: 100%;
+    min-height: 100%; /* Asegura que el fondo cubra al menos toda la altura de la pantalla */
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px; /* Espacio para evitar que el contenido quede pegado a los bordes */
+    box-sizing: border-box; /* Incluye el padding dentro de la altura y anchura */
 }
 
 .container {
@@ -18,6 +21,7 @@ html, body {  /*PARA QUE EL BACKGROUND CUBRA TODA LA PÁGINA, NO SOLAMENTE HASTA
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     max-width: 500px;
     width: 100%;
+    box-sizing: border-box; /* Incluye padding en el ancho */
 }
 
 h2 {
@@ -29,7 +33,7 @@ h2 {
 
 .form-group label {
     font-weight: bolder;
-    color:#1E90FF;
+    color: #1E90FF;
 }
 
 .form-control {
@@ -38,6 +42,7 @@ h2 {
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 15px;
+    box-sizing: border-box; /* Incluye padding en el ancho */
 }
 
 .form-control:focus {
@@ -45,20 +50,19 @@ h2 {
     box-shadow: 0 0 5px #FFD700;
 }
 
-.btn-primary {
-    background-color: #1E90FF;
-    border: none;
+.btn-primary, .btn-secondary {
     width: 48%;
     padding: 10px;
     font-weight: bolder;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #1E90FF;
 }
 
 .btn-secondary {
     background-color: #6c757d;
-    border: none;
-    width: 48%;
-    padding: 10px;
-    font-weight: bolder;
 }
 
 .btn-primary:hover, .btn-secondary:hover {
@@ -76,3 +80,40 @@ h2 {
     margin-top: 15px;
     font-weight: bolder;
 }
+
+/* Estilo para el botón de "Regresar" */
+#regresar {
+    color: lightskyblue;
+    font-weight: bolder; 
+    text-decoration: none; /* Quitar el subrayado */
+    display: block; /* Hacer que el enlace ocupe todo el botón */
+    padding: 10px; /* Espaciado interno */
+    background-color: rgba(0, 128, 128, 0.25); /* Fondo con transparencia */
+    border-radius: 5px; /* Bordes redondeados */
+    margin: 10px auto; /* Centrar horizontalmente con margen arriba y abajo */
+    width: 100px; /* Ajustar el ancho del bloque */
+    text-align: center;
+}
+
+/* Efecto al pasar el mouse encima del enlace */
+#regresar:hover {
+    background-color: rgb(40, 160, 250); /* Cambiar el fondo al pasar el ratón */
+    color: whitesmoke;
+}
+
+/* Para asegurar que los botones se alineen horizontalmente si es necesario */
+li {
+    display: inline-block;
+}
+.background > div:first-child a {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: lightskyblue;
+    font-weight: bolder;
+    text-decoration: none;
+    background-color: rgba(0, 128, 128, 0.25);
+    border-radius: 5px;
+    padding: 10px;
+}
+/* PARA QUE EL ENLACE DE VOLVER ESTÉ EN LA ESQUINA IZQUIERDA/*
