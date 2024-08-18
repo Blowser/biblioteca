@@ -1,3 +1,8 @@
+html, body {  /*PARA QUE EL BACKGROUND CUBRA TODA LA PÁGINA, NO SOLAMENTE HASTA EL FORMULARIO*/
+    height: 100%;
+    margin: 0;
+}
+
 .background {
     background: linear-gradient(135deg, #0f1e2e 0%, #09203f 100%);
     min-height: 100%;
