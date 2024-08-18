@@ -1,59 +1,79 @@
 #titulo {
-    height:3vh;
-    text-align: center; /* Centrar el título */
-    color: #ffffff; /* Letras color blanco*/
+    height: 3vh;
+    text-align: center;
+    color: #ffffff;
 }
-#logoweb{    height: 22vh; /* El header ocupa el 30% de la ventana  en total*/
-    }
-#navheader{
+
+#logoweb {
+    height: 22vh;
+}
+
+#navheader {
     height: 5vh;
-    color: #ffffff; /* Letras color blanco*/
-    ul li{ display:inline; 
-        padding:20px;}
+    color: #ffffff;
+    
 }
 
 header {
     background-color: hsla(0, 0%, 0%, 0.2);
-    text-align: center; /* Centrar el título y el logo */
-/* CON ESTOS CAMBIOS, EL LOGO Y EL TITULO OCUPAN UN 25% DE LA PÁGINA TOTAL*/
+    text-align: center;
+    nav ul li{padding:5px; /*PARA QUE SE VEA EN LÍNEA*/
+            display:inline;}
 }
-    #logoweb {
-        max-height: 80%; /* Asegura que no exceda el header */
-        width:30%;
-    }
-#bienvenido,#mensajedebienvenido {
-    text-align: center; /* Centrar el título */
-    color: #ffffff; /* Letras color blanco*/
+
+#logoweb {
+    max-height: 80%;
+    width: 30%;
 }
-/* Contenedor del buscador */
+
+#bienvenido,
+#mensajedebienvenido {
+    text-align: center;
+    color: #ffffff;
+}
+
 #barrabuscar {
     display: flex;
-    justify-content: center; /* Centrar el contenedor */
-    align-items: center; /* Alinear verticalmente */
+    justify-content: center;
+    align-items: center;
 }
 
-/*LISTA DE CATEGORÍAS*/
-ul {
-    list-style-type: none; /* Eliminar los asteriscos */
-    text-align: center; /* Centrar la lista */
+/* Estilos para la lista de categorías */
+.listadecategoria {
+    list-style-type: none;
+    text-align: center;
 }
 
-/*ENLACES*/
-a {
-    color: lightskyblue; /* Enlaces con color */
-    font-weight: bolder; 
+/* Estilos para los enlaces de categorías */
+.linkdecategoria {
+    color: lightskyblue;
+    font-weight: bolder;
     text-decoration: none !important;
-    display: block; /* Hacer que el enlace ocupe todo el botón */
-    padding: 10px; /* Espaciado interno */
-    background-color:rgba(0, 128, 128, 0.25); /* Fondo oscuro para cada categoría, le puse transparencia */
-    border-radius: 5px; /* Bordes redondeados */
-    margin-bottom: 10px; /* Espacio entre los botones */
-    width: 300px; /* Ajustar el ancho del bloque */
-    margin-left: auto; /* Centrar horizontalmente */
-    margin-right: auto; /* Centrar horizontalmente */
-    text-align: center/*Centrar el texto al medio;*/
+    display: block;
+    padding: 10px;
+    background-color: rgba(0, 128, 128, 0.25);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
-/* EFECTO AL PASAR EL MOUSE ENCIMA DEL ENLACE*/
-a:hover {
-    background-color: rgb(40, 160, 250); /* Cambiar el fondo al pasar el ratón */
-    color:whitesmoke;}
+
+.linkdecategoria:hover {
+    background-color: rgb(40, 160, 250);
+    color: whitesmoke;
+}
+
+/* Estilos específicos para el enlace de Registrar cuenta */
+.linkderegistro, .linkcatalogo {
+    color: white;
+    text-decoration:none;
+    font-weight:bolder;
+}
+
+.linkderegistro, .linkcatalogo:hover {
+    color: lightblue;
+}
+
+
