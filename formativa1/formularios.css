@@ -1,0 +1,73 @@
+.background {
+    background: linear-gradient(135deg, #0f1e2e 0%, #09203f 100%);
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    width: 100%;
+}
+
+h2 {
+    color: #1E90FF;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bolder;
+}
+
+.form-group label {
+    font-weight: bolder;
+    color:#1E90FF;
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid #1a1a1a;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.form-control:focus {
+    border-color: #FFD700;
+    box-shadow: 0 0 5px #FFD700;
+}
+
+.btn-primary {
+    background-color: #1E90FF;
+    border: none;
+    width: 48%;
+    padding: 10px;
+    font-weight: bolder;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    width: 48%;
+    padding: 10px;
+    font-weight: bolder;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    opacity: 0.8;
+}
+
+.text-danger {
+    color: #ff4747;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+#MensajeError {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bolder;
+}
