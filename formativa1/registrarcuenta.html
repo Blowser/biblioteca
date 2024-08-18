@@ -18,21 +18,24 @@
 </head>
 <body>
   <div class="background">
+    <div>
+      <a href="index.html">REGRESAR AL MENÚ</a>
+    </div>
     <div class="container mt-5">
     <h2>Formulario Registro</h2> 
-    <form id="RegistroFormularioJS">
+    <form id="registroFormularioJS">
       <div class="form-group">
 
-        <label for ="NombreCompleto">Nombre Completo:</label>
-        <input type="text" id="NombreCompleto" name="NombreCompleto" class="form-control" placeholder="Ingrese su Nombre" required>
+        <label for ="nombreCompleto">Nombre Completo:</label>
+        <input type="text" id="nombreCompleto" name="nombreCompleto" class="form-control" placeholder="Ingrese su Nombre" required>
         <div id="errorNombreCompleto" class="text-danger"></div> 
 
       </div>
       
           <div class="form-group">
     
-            <label for ="NombreUsuario">Nombre de Usuario:</label>
-            <input type="text" id="NombreUsuario" name="NombreUsuario" class="form-control" placeholder="Ingrese su Nombre de Usuario" required>
+            <label for ="nombreUsuario">Nombre de Usuario:</label>
+            <input type="text" id="nombreUsuario" name="nombreUsuario" class="form-control" placeholder="Ingrese su Nombre de Usuario" required>
             <div id="errorNombreUsuario" class="text-danger"></div> 
     
           </div>
@@ -40,43 +43,43 @@
     
             <label for ="correo">Correo:</label>
             <input type="email" id="correo" name="correo" class="form-control" placeholder="Ingrese su Correo" required>
-            <div id="ErrorCorreo" class="text-danger"></div> 
+            <div id="errorCorreo" class="text-danger"></div> 
     
           </div>
           <div class="form-group">
     
-            <label for ="Contrasena">Contraseña:</label>
-            <input type="contrasena" id="contrasena" name="contrasena" class="form-control" placeholder="Ingrese su Contraseña" required>
-            <div id="ErrorContrasena" class="text-danger"></div> 
+            <label for ="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="Ingrese su Contraseña" required>
+            <div id="errorContrasena" class="text-danger"></div> 
     
           </div>
           <div class="form-group">
     
-            <label for ="ConfirmarContrasena"> Confirmar Contraseña:</label>
-            <input type="contrasena" id="ConfirmarContrasena" name="ConfirmarContrasena" class="form-control" placeholder="Confirme su Contraseña" required>
-            <div id="ErrorContrasena" class="text-danger"></div> 
+            <label for ="confirmarContrasena"> Confirmar Contraseña:</label>
+            <input type="password" id="confirmarContrasena" name="confirmarContrasena" class="form-control" placeholder="Confirme su Contraseña" required>
+            <div id="errorConfirmarContrasena" class="text-danger"></div> 
     
           </div>
           <div class="form-group">
     
-            <label for ="FechaNacimiento"> Fecha de Nacimiento:</label>
-            <input type="date" id="FechaNacimiento" name="FechaNacimiento" class="form-control" required>
-            <div id="ErrorFechaNacimiento" class="text-danger"></div> 
+            <label for ="fechaNacimiento"> Fecha de Nacimiento:</label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control" required>
+            <div id="errorFechaNacimiento" class="text-danger"></div> 
     
           </div>
           <div class="form-group">
     
-            <label for ="Direccion"> Dirección de Despacho (Opcional):</label>
-            <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="Ingrese su Dirección">
-            <div id="ErrorDireccion" class="text-danger"></div> 
+            <label for ="direccion"> Dirección de Despacho (Opcional):</label>
+            <input type="text" id="direccion" name="direccion" class="form-control" placeholder="Ingrese su Dirección">
+            <div id="errorDireccion" class="text-danger"></div> 
     
           </div>
           <div class="formgroup">
             <button type="submit" class="btn btn-primary">Enviar</button>
-            <button type="button" class="btn btn-secondary">Limpiar</button>
+            <button type="button" class="btn btn-secondary" onclick="limpiarFormulario()">Limpiar</button>
           </div>
 
-          <div id="MensajeError"class="text-danger"></div> 
+          <div id="mensajeError"class="text-danger"></div> 
 
         
         
