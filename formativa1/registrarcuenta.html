@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style >
+        .text-danger{ color: red;
+            font-size: 14px;
+            margin-top: 10px;
+         }
+    </style>
+
+
+</head>
+<body>
+    <div class="container mt-5">
+    <h2>Formulario Registro</h2> 
+    <form id="RegistroFormularioJS">
+      <div class="form-group">
+
+        <label for ="NombreCompleto">Nombre Completo:</label>
+        <input type="text" id="NombreCompleto" name="NombreCompleto" class="form-control" placeholder="Ingrese su Nombre" required>
+        <div id="errorNombreCompleto" class="text-danger"></div> 
+
+      </div>
+      
+          <div class="form-group">
+    
+            <label for ="NombreUsuario">Nombre de Usuario:</label>
+            <input type="text" id="NombreUsuario" name="NombreUsuario" class="form-control" placeholder="Ingrese su Nombre de Usuario" required>
+            <div id="errorNombreUsuario" class="text-danger"></div> 
+    
+          </div>
+          <div class="form-group">
+    
+            <label for ="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" class="form-control" placeholder="Ingrese su Correo" required>
+            <div id="ErrorCorreo" class="text-danger"></div> 
+    
+          </div>
+          <div class="form-group">
+    
+            <label for ="Contrasena">Contraseña:</label>
+            <input type="contrasena" id="contrasena" name="contrasena" class="form-control" placeholder="Ingrese su Contraseña" required>
+            <div id="ErrorContrasena" class="text-danger"></div> 
+    
+          </div>
+          <div class="form-group">
+    
+            <label for ="ConfirmarContrasena"> Confirmar Contraseña:</label>
+            <input type="contrasena" id="ConfirmarContrasena" name="ConfirmarContrasena" class="form-control" placeholder="Confirme su Contraseña" required>
+            <div id="ErrorContrasena" class="text-danger"></div> 
+    
+          </div>
+          <div class="form-group">
+    
+            <label for ="FechaNacimiento"> Fecha de Nacimiento:</label>
+            <input type="date" id="FechaNacimiento" name="FechaNacimiento" class="form-control" required>
+            <div id="ErrorFechaNacimiento" class="text-danger"></div> 
+    
+          </div>
+          <div class="form-group">
+    
+            <label for ="Direccion"> Dirección de Despacho (Opcional):</label>
+            <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="Ingrese su Dirección">
+            <div id="ErrorDireccion" class="text-danger"></div> 
+    
+          </div>
+          <div class="formgroup">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="button" class="btn btn-secondary">Limpiar</button>
+          </div>
+
+          <div id="MensajeError"class="text-danger"></div> 
+
+        
+        
+
+
+
+    </form>
+    
+
+    </div>
+    <script src="script-js-js"></script> 
+</body>
+</html>
