@@ -66,13 +66,15 @@ header {
 }
 
 /* Estilos específicos para el enlace de Registrar cuenta */
-.linkderegistro, .linkcatalogo {
+.linkregistro,
+.linkcatalogo {
     color: white;
-    text-decoration:none;
-    font-weight:bolder;
+    text-decoration: none;
+    font-weight: bolder;
 }
 
-.linkderegistro, .linkcatalogo:hover {
+.linkregistro:hover,
+.linkcatalogo:hover {
     color: lightblue;
 }
 
