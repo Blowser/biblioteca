@@ -16,8 +16,7 @@
     flex-wrap: wrap;
     justify-content: center;
 }
-
-a {
+a {/*EFECTOS ENLACE REGRESAR*/
     color: lightskyblue;
     font-weight: bolder; 
     text-decoration: none;
