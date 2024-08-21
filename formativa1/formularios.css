@@ -80,32 +80,11 @@ h2 {
     margin-top: 15px;
     font-weight: bolder;
 }
-
-/* Estilo para el botón de "Regresar" */
-#regresar {
-    color: lightskyblue;
-    font-weight: bolder; 
-    text-decoration: none; /* Quitar el subrayado */
-    display: block; /* Hacer que el enlace ocupe todo el botón */
-    padding: 10px; /* Espaciado interno */
-    background-color: rgba(0, 128, 128, 0.25); /* Fondo con transparencia */
-    border-radius: 5px; /* Bordes redondeados */
-    margin: 10px auto; /* Centrar horizontalmente con margen arriba y abajo */
-    width: 100px; /* Ajustar el ancho del bloque */
-    text-align: center;
-}
-
-/* Efecto al pasar el mouse encima del enlace */
-#regresar:hover {
-    background-color: rgb(40, 160, 250); /* Cambiar el fondo al pasar el ratón */
-    color: whitesmoke;
-}
-
 /* Para asegurar que los botones se alineen horizontalmente si es necesario */
 li {
     display: inline-block;
 }
-.background > div:first-child a {
+.background > div:first-child a { /*EFECTOS BOTON REGRESAR*/
     position: absolute;
     top: 20px;
     left: 20px;
