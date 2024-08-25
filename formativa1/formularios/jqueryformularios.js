@@ -124,7 +124,62 @@ $(document).ready(function() {
             $('#mensajeErrorSesion').text('Por favor, corrige los errores en el formulario');
         }
     });
-
+        // VALIDACIÓN FORM MODIFICAR PERFIL
+     $('#modificarPerfilFormularioJS').submit(function(event) {
+         event.preventDefault();
+        let valid = true;
+    
+         const nombre = $('#nombre').val().trim();
+         const apellido = $('#apellido').val().trim();
+         const correo = $('#correo').val().trim();
+         const telefono = $('#telefono').val().trim();
+         const direccion = $('#direccion').val().trim();
+         const mayusculaRegex = /[A-Z]/; //MINIMO UNA MAYUSCULA PARA LOS NOMBRES
+    
+         if (!nombre || !mayusculaRegex.test(nombre)) {
+             $('#errorNombre').text('El nombre debe tener almenos una mayúscula');
+             valid = false;
+         } else {
+             $('#errorNombre').text('');
+         }
+    
+         if (!apellido || !mayusculaRegex.test(nombre)) {
+            $('#errorApellido').text('El apellido es debe tener almenos una mayúscula');
+             valid = false;
+         } else {
+            $('#errorApellido').text('');
+         }
+    
+         if (!correo || !/^\S+@\S+\.\S+$/.test(correo)) {
+             $('#errorCorreo').text('El correo electrónico es inválido');
+             valid = false;
+         } else {
+             $('#errorCorreo').text('');
+            }
+    
+         if (!telefono || !/^\d{9,15}$/.test(telefono)) {
+             $('#errorTelefono').text('El número de teléfono debe tener entre 9 y 15 dígitos');
+             valid = false;
+         } else {
+             $('#errorTelefono').text('');
+            }
+    
+         if (!direccion) {
+             $('#errorDireccion').text('La dirección es obligatoria');
+             valid = false;
+         } else {
+             $('#errorDireccion').text('');
+            }
+    
+         if (valid) {
+             alert('Información guardada con éxito');
+             $('#mensajeErrorModificarPerfil').text('');
+         } else {
+             $('#mensajeErrorModificarPerfil').text('Por favor, corrige los errores en el formulario');
+         }
+        
+    });
+    
 
 
 
