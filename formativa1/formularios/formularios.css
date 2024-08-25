@@ -101,7 +101,7 @@ li {
 /* PARA QUE EL ENLACE DE VOLVER ESTÉ EN LA ESQUINA IZQUIERDA */
 
 /* Estilos específicos para la página de recuperación de contraseña */
-.password-recovery .btn-primary {
+.password-recovery .btn-primary, #btniniciarsesion {
     width: 100%; /* Asegura que el botón ocupe todo el ancho disponible */
     margin-top: 20px; /* Añade un margen superior para separar el botón del campo de entrada */
 }
