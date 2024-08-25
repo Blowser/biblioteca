@@ -19,7 +19,7 @@ html, body {
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-    max-width: 650px;
+    max-width: 800px; /* Ajusta el ancho máximo del contenedor */
     width: 100%;
     box-sizing: border-box; /* Incluye padding en el ancho */
 }
@@ -31,7 +31,7 @@ h2 {
     font-weight: bolder;
 }
 
-.form-group label, .my-custom-group label {
+.form-group label {
     font-weight: bolder;
     color: #1E90FF;
 }
@@ -99,11 +99,13 @@ li {
 }
 
 /* PARA QUE EL ENLACE DE VOLVER ESTÉ EN LA ESQUINA IZQUIERDA */
-.nav.flex-column {
-    background-color: #a3ffd6e8; /* Color personalizado */
-    padding: 15px;
-    border-radius: 10px;
+
+/* Estilos específicos para la página de recuperación de contraseña */
+.password-recovery .btn-primary {
+    width: 100%; /* Asegura que el botón ocupe todo el ancho disponible */
+    margin-top: 20px; /* Añade un margen superior para separar el botón del campo de entrada */
 }
+
 
 
 
