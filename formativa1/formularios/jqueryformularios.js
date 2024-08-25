@@ -21,8 +21,8 @@ $(document).ready(function() {
             $('#errorNombreCompleto').text('');
         }
 
-        if (!nombreUsuario) {
-            $('#errorNombreUsuario').text('El nombre de usuario es obligatorio');
+        if (!nombreUsuario || nombreUsuario.length < 6) {
+            $('#errorNombreUsuario').text('El nombre de usuario debe tener al menos 6 caracteres');
             valid = false;
         } else {
             $('#errorNombreUsuario').text('');
@@ -92,11 +92,38 @@ $(document).ready(function() {
             window.location.href = "iniciarsesion.html"; // REDIRECCIONAMOS A INICIAR SESIÓN
         }else {
          $('#mensajeErrorRecuperacion').text('Por favor, corrige el formulario');}
-
-
-
     })
 
+    // VALIDACIÓN FORM INICIO SESION
+    $('#iniciarSesionFormularioJS').submit(function(event) {
+        event.preventDefault();
+        let valid = true;
+
+        const usuario = $('#usuario').val().trim();
+        const contrasena = $('#contrasena').val().trim();
+
+        if (!usuario || usuario.length < 6) {
+            $('#errorUsuarioSesion').text('El nombre de usuario debe tener al menos 6 caracteres');
+            valid = false;
+        } else {
+            $('#errorUsuarioSesion').text('');
+        }
+
+        if (!contrasena || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,18}$/.test(contrasena)) {
+            $('#errorContrasenaSesion').text('La contraseña debe tener entre 6-18 caracteres, y al menos 1: mayúscula, minúscula, dígito y carácter especial');
+            valid = false;
+        } else {
+            $('#errorContrasenaSesion').text('');
+        }
+
+        if (valid) {
+            $('#mensajeErrorSesion').text('');
+            alert('Inicio de sesión exitoso');
+            window.location.href = "modificarperfil.html"; // REDIRECCIONAMOS A MODIFICAR PERFIL
+        } else {
+            $('#mensajeErrorSesion').text('Por favor, corrige los errores en el formulario');
+        }
+    });
 
 
 
