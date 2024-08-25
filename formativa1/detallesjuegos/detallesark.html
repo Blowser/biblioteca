@@ -9,23 +9,34 @@
 </head>
 <body>
     <div class="background">
-     <div id="contenedor">      
-        <div id="video-container">
-            <iframe width="560" height="315" src="https://video.akamai.steamstatic.com/store_trailers/256836250/movie480_vp9.webm?t=1622089232" frameborder="0" allowfullscreen></iframe>
-        </div>
+    <div class="container my-5"><!-- RESPONSIVIDAD  Video del juego -->
+        <div class="row">
+            <div class="col-md-8 offset-md-2 mb-4">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://video.akamai.steamstatic.com/store_trailers/256836250/movie480_vp9.webm?t=1622089232" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
 
-        <div id="descripcion">
-            <p>Juega como un hombre o mujer desnudo, congelándote y muriéndote de hambre en una isla misteriosa. Debes cazar, cosechar, crear objetos, cultivar y construir refugios para sobrevivir. Usa tu habilidad y astucia para matar o domesticar y montar criaturas prehistóricas.</p>
-        </div>
 
-        <ul id="detalles-juego">
-            <li>Fecha de lanzamiento: 27 Agosto 2017</li>
-            <li>Desarrollador: Studio Wildcard</li>
-            <li>Editor: Snail Games USA</li>
-        
-        </ul>
-     </div>    
-        <a id="regresar" href="../categoriajuegos/supervivencia.html" class="boton">Volver a la categoría</a>
+            <div class="col-md-8 offset-md-2">
+                <div class="p-4 bg-secondary rounded">
+                    <p class="lead">Juega como un hombre o mujer desnudo, congelándote y muriéndote de hambre en una isla misteriosa. Debes cazar, cosechar, crear objetos, cultivar y construir refugios para sobrevivir. Usa tu habilidad y astucia para matar o domesticar y montar criaturas prehistóricas.</p>
+                </div>
+            </div>
+            <div class="col-md-8 offset-md-2 my-4">
+                <ul class="list-group">
+                    <li class="list-group-item bg-dark text-light">Fecha de lanzamiento: 27 Agosto 2017</li>
+                    <li class="list-group-item bg-dark text-light">Desarrollador: Studio Wildcard</li>
+                    <li class="list-group-item bg-dark text-light">Editor: Snail Games USA</li>
+                </ul>
+            </div>
+
+            <!-- Botón de regreso -->
+            <div class="col-md-8 offset-md-2 text-center">
+                <a id="regresar" href="../categoriajuegos/supervivencia.html" class="btn btn-primary mt-4">Volver a la categoría</a>
+            </div>
+        </div>
     </div>
+</div>
 </body>
 </html>
