@@ -36,7 +36,6 @@
     background-color:rgba(0, 128, 128, 0.25); /* Fondo oscuro para cada categoría, le puse transparencia */
     border-radius: 5px; /* Bordes redondeados */
     margin-bottom: 10px; /* Espacio entre los botones */
-    width: 100px; /* Ajustar el ancho del bloque */
     margin-left: auto; /* Centrar horizontalmente */
     margin-right: auto; /* Centrar horizontalmente */
     text-align: center;
