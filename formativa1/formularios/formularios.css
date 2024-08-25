@@ -105,6 +105,11 @@ li {
     width: 100%; /* Asegura que el botón ocupe todo el ancho disponible */
     margin-top: 20px; /* Añade un margen superior para separar el botón del campo de entrada */
 }
+.nav.flex-column {
+    background-color: #9493938e; /* gris claro  para el menu navegable de modificar perfil*/ 
+    padding: 15px;
+    border-radius: 10px;
+}
 
 
 
