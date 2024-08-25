@@ -58,6 +58,8 @@ $(document).ready(function() {
         if (valid) {
             $('#mensajeError').text('');
             alert('Formulario enviado con éxito');
+            window.location.href = "modificarperfil.html"; // REDIRECCIONAMOS A MODIFICAR PERFIL
+        
         } else {
             $('#mensajeError').text('Por favor, corrige los errores en el formulario');
         }
