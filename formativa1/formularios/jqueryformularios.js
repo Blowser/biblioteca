@@ -1,4 +1,5 @@
 $(document).ready(function() {
+        // VALIDACIÓN FORM CREAR CUENTA NUEVA
     $('#registroFormularioJS').submit(function(event) {
         event.preventDefault(); // Detiene el envío del formulario por defecto
         let valid = true;
@@ -56,12 +57,12 @@ $(document).ready(function() {
         }
 
         if (valid) {
-            $('#mensajeError').text('');
+            $('#mensajeErrorRegistro').text('');
             alert('Formulario enviado con éxito');
             window.location.href = "modificarperfil.html"; // REDIRECCIONAMOS A MODIFICAR PERFIL
         
         } else {
-            $('#mensajeError').text('Por favor, corrige los errores en el formulario');
+            $('#mensajeErrorRegistro').text('Por favor, corrige los errores en el formulario');
         }
     });
 
@@ -71,5 +72,34 @@ $(document).ready(function() {
         $('.text-danger').text('');
         $('#mensajeError').text('');
     }
-});
 
+
+    // VALIDACIÓN FORM RECUPERAR CONTRASEÑA
+    $('#recuperarContrasenaFormularioJS').submit(function(event) {
+        event.preventDefault();
+        let valid = true;
+        const correo = $('#correo').val().trim();
+
+        if (!correo|| !/^\S+@\S+\.\S+$/.test(correo)) {
+            $('#errorCorreoRecuperacion').text('Por favor, ingresa un correo válido');
+            valid = false;
+        } else {
+            $('#errorCorreoRecuperacion').text('');}
+
+        if (valid) {
+            $('#mensajeErrorRecuperacion').text('');
+            alert('Enlace de recuperación enviado con éxito');
+            window.location.href = "iniciarsesion.html"; // REDIRECCIONAMOS A INICIAR SESIÓN
+        }else {
+         $('#mensajeErrorRecuperacion').text('Por favor, corrige el formulario');}
+
+
+
+    })
+
+
+
+
+
+
+});
