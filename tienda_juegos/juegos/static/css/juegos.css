@@ -1,0 +1,70 @@
+#categoria {
+    text-align: center;
+    color: #ffffff;
+}
+
+#barrabuscar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    list-style-type: none;
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+a {/*EFECTOS ENLACE REGRESAR*/
+    color: lightskyblue;
+    font-weight: bolder; 
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: rgb(40, 160, 250);
+    color: whitesmoke;
+}
+
+.card {
+    padding:5px;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.15); /* Fondo transparente similar al background */
+    border: none; /* Elimina los bordes de la card */
+    height: 100%; /* Asegura que todas las cards tengan la misma altura */
+}
+
+.card-img-top {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+    text-align: center; /* Centra el texto */
+    color: #ffffff;
+
+    background-color: transparent; /* Fondo transparente */
+}
+
+.card-body h5,
+.card-body p {
+    margin: 5px 0; /* Espaciado entre el título y el texto */
+}
+
+.card .btn-primary {
+    background-color: rgba(0, 128, 128, 0.75);
+    border-color: rgba(0, 128, 128, 0.75);
+}
+
+.card .btn-primary:hover {
+    background-color: rgb(40, 160, 250);
+    border-color: rgb(40, 160, 250);
+}
+

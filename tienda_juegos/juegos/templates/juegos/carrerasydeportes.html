@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESTIM - Juegos de carreras y deportes</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/background.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/juegos.css' %}" />
+</head>
+<body>
+  <div class="background">
+    <div class="content">
+      <main>
+        <div>
+          <a href="{% url 'index' %}">REGRESAR AL MENÚ</a>
+        </div>
+        <h1 id="categoria">Carreras y deportes</h1>
+        <form id="barrabuscar">
+          <label for="buscar" class="sr-only">Buscar</label>
+          <input type="search" id="buscar" placeholder="Buscar" />
+          <button id="btnbuscar">Buscar juegos</button>
+        </form>
+        <section>
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card" style="width: 18rem">
+                  <img src="{% static 'imagenes/rocketleague.jpg' %}" class="card-img-top" alt="ROCKET LEAGUE"/>
+                  <div class="card-body">
+                    <h5 class="card-title">ROCKET LEAGUE</h5>
+                    <p class="card-text">CLP$ 31.200</p>
+                    <a href="{% url 'detalles_rocketleague' %}" class="btn btn-primary">Ver Detalles</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card" style="width: 18rem">
+                  <img src="{% static 'imagenes/fc24.jpg' %}" class="card-img-top" alt="EA SPORTS FC™ 24"/>
+                  <div class="card-body">
+                    <h5 class="card-title">EA SPORTS FC™ 24</h5>
+                    <p class="card-text">CLP$ 55.900</p>
+                    <a href="{% url 'detalles_fc24' %}" class="btn btn-primary">Ver Detalles</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

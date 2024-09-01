@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESTIM - Juegos de Acción</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/background.css' %}">
+    <link rel="stylesheet" href="{% static 'css/juegos.css' %}" />
+
+  </head>
+  <body>
+    <div class="background">
+      <div class="content">
+        <main>
+          <div>
+            <a href="{% url 'index' %}">REGRESAR AL MENÚ</a>
+          </div>
+          <h1 id="categoria">Acción</h1>
+          <form id="barrabuscar">
+            <label for="buscar" class="sr-only">Buscar</label>
+            <input type="search" id="buscar" placeholder="Buscar" />
+            <button id="btnbuscar">Buscar juegos</button>
+          </form>
+          <section>
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                  <div class="card" style="width: 18rem">
+                    <img
+                      src="{% static 'imagenes/counterstrike2.jpg' %}"
+                      class="card-img-top"
+                      alt="Counter-Strike 2 - Imagen del juego"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">CS2</h5>
+                      <p class="card-text">CLP$ 33.000</p>
+                      <a href="{% url 'detalles_cs2' %}" class="btn btn-primary"
+                        >Ver Detalles</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                  <div class="card" style="width: 18rem">
+                    <img
+                      src="{% static 'imagenes/gtav.jpg' %}"
+                      class="card-img-top"
+                      alt="Grand Theft Auto V - Imagen del juego"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">Grand Theft Auto V</h5>
+                      <p class="card-text">CLP$ 15.000</p>
+                      <a
+                        href="{% url 'detalles_gtav' %}"
+                        class="btn btn-primary"
+                        >Ver Detalles</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
