@@ -1,0 +1,12 @@
+.background {
+    background-image: url("{% static 'imagenes/blue_body_top.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+
