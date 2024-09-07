@@ -59,7 +59,8 @@ $(document).ready(function() {
         if (valid) {
             $('#mensajeErrorRegistro').text('');
             alert('Formulario enviado con éxito');
-            window.location.href = "modificarperfil.html"; // REDIRECCIONAMOS A MODIFICAR PERFIL
+           // window.location.href = "modificarperfil.html"; // REDIRECCIONAMOS A MODIFICAR PERFIL
+           window.location.href = modificarPerfilUrl;  // Redirigir a la URL generada por Django
         
         } else {
             $('#mensajeErrorRegistro').text('Por favor, corrige los errores en el formulario');
@@ -89,7 +90,8 @@ $(document).ready(function() {
         if (valid) {
             $('#mensajeErrorRecuperacion').text('');
             alert('Enlace de recuperación enviado con éxito');
-            window.location.href = "iniciarsesion.html"; // REDIRECCIONAMOS A INICIAR SESIÓN
+            //window.location.href = "iniciarsesion.html"; // REDIRECCIONAMOS A INICIAR SESIÓN
+            window.location.href = iniciarSesionUrl;  // Redirigir a la URL generada por Django
         }else {
          $('#mensajeErrorRecuperacion').text('Por favor, corrige el formulario');}
     })
@@ -119,7 +121,8 @@ $(document).ready(function() {
         if (valid) {
             $('#mensajeErrorSesion').text('');
             alert('Inicio de sesión exitoso');
-            window.location.href = "modificarperfil.html"; // REDIRECCIONAMOS A MODIFICAR PERFIL
+            //window.location.href = "modificarperfil.html"; // REDIRECCIONAMOS A MODIFICAR PERFIL
+            window.location.href = modificarPerfilUrl;  // Redireccionamos a la URL de esta forma en Django
         } else {
             $('#mensajeErrorSesion').text('Por favor, corrige los errores en el formulario');
         }
