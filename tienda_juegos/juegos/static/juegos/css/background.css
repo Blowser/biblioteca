@@ -1,6 +1,6 @@
 .background {
 
-    background-image: url('../static/juegos/imagenes/blue_body_top.jpg');
+    background-image: url('/static/imagenes/blue_body_top.jpg');
   
     background-size: cover;
   
