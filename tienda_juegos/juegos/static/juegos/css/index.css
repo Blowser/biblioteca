@@ -6,24 +6,23 @@
 
 #logoweb {
     height: 22vh;
+    max-height: 80%;
+    width: 30%;
 }
 
 #navheader {
     height: 5vh;
     color: #ffffff;
-    
 }
 
 header {
     background-color: hsla(0, 0%, 0%, 0.2);
     text-align: center;
-    nav ul li{padding:5px; /*PARA QUE SE VEA EN LÍNEA*/
-            display:inline;}
 }
 
-#logoweb {
-    max-height: 80%;
-    width: 30%;
+nav ul li {
+    padding: 5px; /* PARA QUE SE VEA EN LÍNEA */
+    display: inline;
 }
 
 #bienvenido,
@@ -77,5 +76,6 @@ header {
 .linkcatalogo:hover {
     color: lightblue;
 }
+
 
 
