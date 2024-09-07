@@ -1,5 +1,5 @@
-.background {
-    background-image: url("../imagenes/blue_body_top.jpg"); /* Ruta correcta a la imagen */
+body {
+    background-image: url("../imagenes/blue_body_top.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -8,6 +8,3 @@
     width: 100vw;
     overflow: hidden;
 }
-
-
-
