@@ -3,6 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar en los htmls
+               
     path('', views.index, name='index'),
     path('vercatalogo/', views.ver_catalogo, name='ver_catalogo'),
     path('iniciarsesion/', views.iniciar_sesion, name='iniciar_sesion'),
@@ -30,6 +31,7 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     path('modificarperfil/', views.modificar_perfil, name='modificar_perfil'),
     path('recuperarcontrasena/', views.recuperar_contrasena, name='recuperar_contrasena'),
 ]
+
 
 
 
