@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ESTIM{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{% static 'juegos/css/background.css' %}">
+    <link rel="stylesheet" href="{% static 'juegos/css/index.css' %}">
+</head>
+<body>
+    <div class="background">
+        <header>
+            <h1 id="titulo">Estim</h1> 
+            <img src="{% static 'juegos/imagenes/logoweb-removebg.png' %}" alt="logo de la página" id="logoweb">
+            <nav id="navheader">
+                <ul class="listaderegistro">
+                    <li><a href="{% url 'vercatalogo' %}" class="linkcatalogo">Ver catálogo completo</a></li>
+                    <li><a href="{% url 'iniciarsesion' %}" class="linkregistro">Iniciar sesión</a></li> 
+                </ul>
+            </nav>
+        </header>
+
+        <main class="container">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
