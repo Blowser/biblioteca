@@ -4,7 +4,7 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}ESTIM{% endblock %}</title>
+    <title>ESTIM</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{% static 'juegos/css/background.css' %}">
     <link rel="stylesheet" href="{% static 'juegos/css/index.css' %}">
@@ -16,18 +16,34 @@
             <img src="{% static 'juegos/imagenes/logoweb-removebg.png' %}" alt="logo de la página" id="logoweb">
             <nav id="navheader">
                 <ul class="listaderegistro">
-                    <li><a href="{% url 'vercatalogo' %}" class="linkcatalogo">Ver catálogo completo</a></li>
-                    <li><a href="{% url 'iniciarsesion' %}" class="linkregistro">Iniciar sesión</a></li> 
+                    <li><a href="{% url 'ver_catalogo' %}" class="linkcatalogo">Ver catálogo completo</a></li>
+                    <li><a href="{% url 'iniciar_sesion' %}" class="linkregistro">Iniciar sesión</a></li> 
                 </ul>
             </nav>
         </header>
-
-        <main class="container">
-            {% block content %}
-            {% endblock %}
-        </main>
+    
+        <div class="content">
+            <main>
+                <section aria-labelledby="categorias">
+                    <h1 id="bienvenido">¡Bienvenido!</h1>
+                    <h2 id="mensajedebienvenido">Elige una categoría de juegos, o puedes usar el buscador</h2>
+                    <div>
+                        <form id="barrabuscar">
+                            <input type="search" placeholder="Buscar">
+                            <button id="btnbuscar">Buscar juegos</button>
+                        </form>
+                    </div>
+                    <br>
+                    <ul class="listadecategoria">
+                        <li><a href="{% url 'categoria_accion' %}" class="linkdecategoria">Acción</a></li>
+                        <li><a href="{% url 'categoria_mundo_abierto' %}" class="linkdecategoria">Mundo Abierto</a></li>
+                        <li><a href="{% url 'categoria_free_to_play' %}" class="linkdecategoria">Free to Play</a></li>
+                        <li><a href="{% url 'categoria_supervivencia' %}" class="linkdecategoria">Supervivencia</a></li>
+                        <li><a href="{% url 'categoria_carreras_y_deportes' %}" class="linkdecategoria">Carreras y Deportes</a></li>
+                    </ul>
+                </section>
+            </main>
+        </div>
     </div>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
