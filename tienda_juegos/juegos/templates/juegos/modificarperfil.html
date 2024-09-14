@@ -7,7 +7,7 @@
   <title>Modificar perfil</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="{% static 'juegos/css/background.css' %}">
-  <link rel="stylesheet" href="{% static 'juegos/css/formularios.css' %}" />
+  <link rel="stylesheet" href="{% static 'juegos/css/formularios.css' %}">
 </head>
 <body>
 
@@ -22,60 +22,69 @@
           <li class="nav-item"><a href="#" class="nav-link">Avatar</a></li>
           <li class="nav-item"><a href="#" class="nav-link">Descripción</a></li>
           <li class="nav-item"><a href="#" class="nav-link">Ajustes de privacidad</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Cerrar Sesión</a></li>
+          <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Cerrar Sesión</a></li>
         </ul>
       </div>
       <div class="col-md-9">
         <h2>Modificar perfil</h2>
-        <form id="modificarPerfilFormularioJS">
-
+        <form method="post" action="{% url 'modificar_perfil' %}">
+          {% csrf_token %}
+          
           <div class="form-group">
             <label for="nombre">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
-            <div id="errorNombre" class="text-danger"></div> 
+            <input type="text" class="form-control" id="nombre" name="first_name" value="{{ user.first_name }}" placeholder="Ingrese su nombre" required>
+            <div id="errorNombre" class="text-danger"></div>
           </div>
-
 
           <div class="form-group">
             <label for="apellido">Apellido:</label>
-            <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido">
-            <div id="errorApellido" class="text-danger"></div> 
+            <input type="text" class="form-control" id="apellido" name="last_name" value="{{ user.last_name }}" placeholder="Ingrese su apellido" required>
+            <div id="errorApellido" class="text-danger"></div>
           </div>
-
 
           <div class="form-group">
             <label for="correo">Correo Electrónico:</label>
-            <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo electrónico">
-            <div id="errorCorreo" class="text-danger"></div> 
+            <input type="email" class="form-control" id="correo" name="email" value="{{ user.email }}" placeholder="Ingrese su correo electrónico" required>
+            <div id="errorCorreo" class="text-danger"></div>
           </div>
-
 
           <div class="form-group">
             <label for="telefono">Número de Teléfono:</label>
-            <input type="tel" class="form-control" id="telefono" placeholder="Ingrese su número de teléfono">
-            <div id="errorTelefono" class="text-danger"></div> 
+            <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingrese su número de teléfono">
+            <div id="errorTelefono" class="text-danger"></div>
           </div>
-
 
           <div class="form-group">
             <label for="direccion">Dirección:</label>
-            <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección">
-            <div id="errorDireccion" class="text-danger"></div> 
+            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingrese su dirección">
+            <div id="errorDireccion" class="text-danger"></div>
           </div>
 
-
-          <button type="button" class="btn btn-secondary">Cancelar</button>
           <button type="submit" class="btn btn-primary">Guardar</button>
-          <div id="mensajeErrorModificarPerfil"class="text-danger"></div> 
+
+          <!-- Mostrando errores si los hay -->
+          {% if form.errors %}
+          <div class="mt-3">
+            <ul class="alert alert-danger">
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
         </form>
       </div>
     </div>
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static '/juegos/js/jqueryformularios.js' %}"></script>
+<script src="{% static 'jqueryformularios.js' %}"></script>
 </body>
 </html>
+
+
 
 
 
