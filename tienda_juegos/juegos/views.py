@@ -2,15 +2,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Producto
 from .forms import ProductoForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+
 # para el index
 def index(request):
     return render(request, 'juegos/index.html')
 
 def ver_catalogo(request):
     return render(request, 'juegos/vercatalogo.html')
-
-def iniciar_sesion(request):
-    return render(request, 'juegos/iniciarsesion.html')
 
 def categoria_accion(request):
     return render(request, 'juegos/accion.html')
@@ -26,6 +27,56 @@ def categoria_supervivencia(request):
 
 def categoria_carreras_deportes(request):
     return render(request, 'juegos/carrerasydeportes.html')
+
+# para los formularios
+
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
+def iniciar_sesion(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')  # Redirige a la página principal 
+        else:
+            messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
+    return render(request, 'juegos/iniciarsesion.html')
+
+
+
+def registrar_cuenta(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Cuenta creada exitosamente. ¡Ahora puedes iniciar sesión!')
+            return redirect('login')  # Redirigir al login después de registrar
+    else:
+        form = UserCreationForm()
+    return render(request, 'juegos/registrarcuenta.html', {'form': form})
+
+
+@login_required
+def modificar_perfil(request):
+    if request.method == 'POST':
+        user = request.user
+        user.first_name = request.POST['first_name']
+        user.last_name = request.POST['last_name']
+        user.email = request.POST['email']
+        # Puedes agregar más campos personalizados como teléfono o dirección si tienes los modelos correctos
+        # user.telefono = request.POST.get('telefono', '')
+        # user.direccion = request.POST.get('direccion', '')
+        user.save()
+        messages.success(request, 'Perfil actualizado correctamente.')
+        return redirect('modificar_perfil')
+    return render(request, 'juegos/modificarperfil.html', {'user': request.user})
+
+def recuperar_contrasena(request):
+    return render(request, 'juegos/recuperarcontrasena.html')
 
 
 # para el catalogo
@@ -58,16 +109,6 @@ def detalles_eldenring(request):
 
 def detalles_rocketleague(request):
     return render(request, 'juegos/detallesrocketleague.html')
-
-# para los formularios
-def registrar_cuenta(request):
-    return render(request, 'juegos/registrarcuenta.html')
-
-def modificar_perfil(request):
-    return render(request, 'juegos/modificarperfil.html')
-
-def recuperar_contrasena(request):
-    return render(request, 'juegos/recuperarcontrasena.html')
 
 
 # para el CRUD
