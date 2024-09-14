@@ -77,5 +77,18 @@ nav ul li {
     color: lightblue;
 }
 
+#logoweb {
+    display: block;
+    margin: 0 auto;
+    width: 150px; /* Ajustar el tamaño según lo que prefieras */
+    height: auto;
+}
+#barrabuscar {
+    margin-bottom: 20px;
+}
+
+.listadecategoria {
+    margin-top: 20px;  /* Espacio entre el botón y las categorías */
+}
 
 
