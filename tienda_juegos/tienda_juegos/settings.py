@@ -78,13 +78,14 @@ WSGI_APPLICATION = 'tienda_juegos.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'localhost/XEPDB1',  # El servicio de tu PDB
-        'USER': 'C##TransientGundam',  # Tu usuario creado
-        'PASSWORD': 'MobileSuit',  # La contraseña del usuario
-        'HOST': 'localhost',  # El host de la base de datos
-        'PORT': '1521',  # El puerto que usa Oracle
+        'NAME': 'XE',  ## Nombre de la base de datos
+        'USER': 'C##TransientGundam',  # Usuario de la base de datos
+        'PASSWORD': 'MobileSuit',  # Contraseña
+        'HOST': 'localhost',  # Servidor
+        'PORT': '1521',  # Puerto de Oracle
     }
 }
+
 
 
 
