@@ -1,0 +1,10 @@
+<h1>{% if producto %}Editar Producto{% else %}Crear Producto{% endif %}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% if producto %}Guardar Cambios{% else %}Crear{% endif %}</button>
+</form>
+
+
+
+
