@@ -3,8 +3,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Producto
 from .forms import ProductoForm
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test, login_required
+from django.contrib.auth import authenticate, login
+
 
 # para el index
 def index(request):
@@ -41,10 +42,15 @@ def iniciar_sesion(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')  # Redirige a la página principal 
+            # Redirigir a listar_productos si es superusuario
+            if user.is_superuser:
+                return redirect('listar_productos')
+            # Si es un usuario normal, redirigir a la página principal
+            return redirect('index')
         else:
-            messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
-    return render(request, 'juegos/iniciarsesion.html')
+            # Si las credenciales no son válidas, mostrar error
+            return render(request, 'juegos/iniciarsesion.html', {'error': 'Credenciales inválidas'})  
+    return render(request, 'juegos/iniciarsesion.html')  
 
 
 
@@ -126,7 +132,17 @@ def listar_productos(request):
     productos = Producto.objects.all()
     return render(request, 'juegos/listar_productos.html', {'productos': productos})
 
-# Vista para crear un nuevo producto
+def es_superuser(user):
+    return user.is_superuser
+
+@user_passes_test(es_superuser)
+@login_required
+def listar_productos(request):
+    productos = Producto.objects.all()
+    return render(request, 'juegos/listar_productos.html', {'productos': productos})
+
+@user_passes_test(es_superuser)
+@login_required
 def crear_producto(request):
     if request.method == 'POST':
         form = ProductoForm(request.POST)
@@ -137,7 +153,8 @@ def crear_producto(request):
         form = ProductoForm()
     return render(request, 'juegos/crear_producto.html', {'form': form})
 
-# Vista para editar un producto
+@user_passes_test(es_superuser)
+@login_required
 def editar_producto(request, sku):
     producto = get_object_or_404(Producto, sku=sku)
     if request.method == 'POST':
@@ -149,7 +166,8 @@ def editar_producto(request, sku):
         form = ProductoForm(instance=producto)
     return render(request, 'juegos/editar_producto.html', {'form': form, 'producto': producto})
 
-# Vista para eliminar un producto
+@user_passes_test(es_superuser)
+@login_required
 def eliminar_producto(request, sku):
     producto = get_object_or_404(Producto, sku=sku)
     if request.method == 'POST':
@@ -157,11 +175,5 @@ def eliminar_producto(request, sku):
         return redirect('listar_productos')
     return render(request, 'juegos/eliminar_producto.html', {'producto': producto})
 
-
-
-def buscar_juegos(request):
-    query = request.GET.get('q')
-    resultados = []  
-    return render(request, 'juegos/resultados_busqueda.html', {'resultados': resultados})
 
 
