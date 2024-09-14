@@ -130,3 +130,12 @@ STATICFILES_DIRS = [BASE_DIR / "juegos/static"]
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Redirigir al usuario después de iniciar/cerrar sesión
+LOGIN_REDIRECT_URL = 'index'  
+LOGOUT_REDIRECT_URL = 'login'
+
+# Para el sistema de recuperación de contraseñas (configura el backend de correos)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Durante desarrollo
+# En producción, configura un servidor de correo real
+LOGIN_URL = 'login'
