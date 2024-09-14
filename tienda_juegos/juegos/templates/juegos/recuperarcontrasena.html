@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="{% static 'juegos/css/background.css' %}">
   <link rel="stylesheet" href="{% static 'juegos/css/formularios.css' %}">
-
 </head>
 <body>
 
@@ -20,26 +19,38 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <h2>Recuperar Contraseña</h2>
-        <form id="recuperarContrasenaFormularioJS">
+        <form method="post" action="{% url 'password_reset' %}">
+          {% csrf_token %}
           <div class="form-group">
-            <label for="correo">Correo Electrónico:</label>
-            <input type="email" name="correo" class="form-control" id="correo" placeholder="Ingrese su correo electrónico" required>
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Ingrese su correo electrónico" required>
             <div id="errorCorreoRecuperacion" class="text-danger"></div> 
           </div>
           <button type="submit" class="btn btn-primary">Enviar Enlace de Recuperación</button>
-          <div id="mensajeErrorRecuperacion" class="text-danger"></div> 
+
+          <!-- Mostrando los errores de Django en caso de validación fallida -->
+          {% if form.errors %}
+          <div class="mt-3">
+            <ul class="alert alert-danger">
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
         </form>
       </div>
     </div>
   </div>
 </div>
-<script>
-  var iniciarSesionUrl = "{% url 'iniciar_sesion' %}";
-</script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static '/juegos/js/jqueryformularios.js' %}"></script>
+<script src="{% static 'jqueryformularios.js' %}"></script>
 </body>
 </html>
+
+
+
 
 
