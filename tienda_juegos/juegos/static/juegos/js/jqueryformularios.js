@@ -1,71 +1,22 @@
-$(document).ready(function() {
-        // VALIDACIÓN FORM CREAR CUENTA NUEVA
-    $('#registroFormularioJS').submit(function(event) {
-        event.preventDefault(); // Detiene el envío del formulario por defecto
-        let valid = true;
+$('#registroFormularioJS').submit(function(event) {
+    let valid = true;
 
-        const nombreCompleto = $('#nombreCompleto').val().trim();
-        const nombreUsuario = $('#nombreUsuario').val().trim();
-        const correo = $('#correo').val().trim();
-        const contrasena = $('#contrasena').val().trim();
-        const confirmarContrasena = $('#confirmarContrasena').val().trim();
-        const fechaNacimiento = $('#fechaNacimiento').val().trim();
-        const fechaactual = new Date();
-        const edad = fechaactual.getFullYear() - new Date(fechaNacimiento).getFullYear();
-        const mes = fechaactual.getMonth() - new Date(fechaNacimiento).getMonth();
+    const nombreCompleto = $('#nombreCompleto').val().trim();
+    const nombreUsuario = $('#nombreUsuario').val().trim();
+    const correo = $('#correo').val().trim();
+    const contrasena = $('#contrasena').val().trim();
+    const confirmarContrasena = $('#confirmarContrasena').val().trim();
+    const fechaNacimiento = $('#fechaNacimiento').val().trim();
+    const edad = new Date().getFullYear() - new Date(fechaNacimiento).getFullYear();
 
-        if (!nombreCompleto) {
-            $('#errorNombreCompleto').text('Tu nombre es obligatorio');
-            valid = false;
-        } else {
-            $('#errorNombreCompleto').text('');
-        }
+    // Validaciones aquí...
 
-        if (!nombreUsuario || nombreUsuario.length < 6) {
-            $('#errorNombreUsuario').text('El nombre de usuario debe tener al menos 6 caracteres');
-            valid = false;
-        } else {
-            $('#errorNombreUsuario').text('');
-        }
-
-        if (!correo || !/^\S+@\S+\.\S+$/.test(correo)) {
-            $('#errorCorreo').text('El correo electrónico es inválido');
-            valid = false;
-        } else {
-            $('#errorCorreo').text('');
-        }
-
-        if (!contrasena || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,18}$/.test(contrasena)) {
-            $('#errorContrasena').text('La contraseña debe tener entre 6-18 caracteres, y al menos 1: mayúscula, minúscula, dígito y carácter especial');
-            valid = false;
-        } else {
-            $('#errorContrasena').text('');
-        }
-
-        if (confirmarContrasena !== contrasena) {
-            $('#errorConfirmarContrasena').text('Las contraseñas no coinciden');
-            valid = false;
-        } else {
-            $('#errorConfirmarContrasena').text('');
-        }
-
-        if (edad < 13 || (edad === 13 && mes < 0)) {
-            $('#errorFechaNacimiento').text('Debes tener al menos 13 años de edad para registrarte');
-            valid = false;
-        } else {
-            $('#errorFechaNacimiento').text('');
-        }
-
-        if (valid) {
-            $('#mensajeErrorRegistro').text('');
-            alert('Formulario enviado con éxito');
-           // window.location.href = "modificarperfil.html"; // REDIRECCIONAMOS A MODIFICAR PERFIL
-           window.location.href = modificarPerfilUrl;  // Redirigir a la URL generada por Django
-        
-        } else {
-            $('#mensajeErrorRegistro').text('Por favor, corrige los errores en el formulario');
-        }
-    });
+    if (!valid) {
+        $('#mensajeErrorRegistro').text('Corrige los errores en el formulario');
+        event.preventDefault();  // Solo detén el envío si hay errores
+    } else {
+        $('#mensajeErrorRegistro').text('');
+    }
 
     // Función para limpiar el formulario y los mensajes de error
     window.limpiarFormulario = function() {
