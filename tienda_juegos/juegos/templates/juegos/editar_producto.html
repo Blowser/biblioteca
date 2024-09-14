@@ -1,9 +1,20 @@
-<h1>{% if producto %}Editar Producto{% else %}Crear Producto{% endif %}</h1>
-<form method="post">
+{% extends "base_crud.html" %}
+
+{% block title %}
+    {% if producto %}Editar Producto{% else %}Crear Producto{% endif %}
+{% endblock %}
+
+{% block content %}
+<h1 class="my-4">{% if producto %}Editar Producto{% else %}Crear Producto{% endif %}</h1>
+
+<form method="post" class="mb-4">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">{% if producto %}Guardar Cambios{% else %}Crear{% endif %}</button>
+    <button type="submit" class="btn btn-success">{% if producto %}Guardar Cambios{% else %}Crear{% endif %}</button>
 </form>
+<a href="{% url 'listar_productos' %}" class="btn btn-secondary">Volver</a>
+{% endblock %}
+
 
 
 
