@@ -30,7 +30,14 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     path('registrarcuenta/', views.registrar_cuenta, name='registrar_cuenta'),
     path('modificarperfil/', views.modificar_perfil, name='modificar_perfil'),
     path('recuperarcontrasena/', views.recuperar_contrasena, name='recuperar_contrasena'),
+    
+    #paths CRUD
+    path('productos/', views.listar_productos, name='listar_productos'),
+    path('productos/crear/', views.crear_producto, name='crear_producto'),
+    path('productos/editar/<str:sku>/', views.editar_producto, name='editar_producto'),
+    path('productos/eliminar/<str:sku>/', views.eliminar_producto, name='eliminar_producto'),
 ]
+
 
 
 
