@@ -48,16 +48,25 @@ def iniciar_sesion(request):
 
 
 
+
 def registrar_cuenta(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            user.first_name = request.POST['first_name']
+            user.last_name = request.POST['last_name']
+            user.email = request.POST['email']
+            user.save()  # Guardar los campos adicionales
             messages.success(request, 'Cuenta creada exitosamente. ¡Ahora puedes iniciar sesión!')
-            return redirect('login')  # Redirigir al login después de registrar
+            return redirect('iniciar_sesion')
+        else:
+            messages.error(request, 'Por favor corrige los errores del formulario.')
     else:
         form = UserCreationForm()
     return render(request, 'juegos/registrarcuenta.html', {'form': form})
+
+
 
 
 @login_required
@@ -148,5 +157,11 @@ def eliminar_producto(request, sku):
         return redirect('listar_productos')
     return render(request, 'juegos/eliminar_producto.html', {'producto': producto})
 
+
+
+def buscar_juegos(request):
+    query = request.GET.get('q')
+    resultados = []  
+    return render(request, 'juegos/resultados_busqueda.html', {'resultados': resultados})
 
 
