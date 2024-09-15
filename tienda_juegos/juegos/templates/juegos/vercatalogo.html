@@ -1,130 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESTIM - Catálogo</title>
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-    crossorigin="anonymous"
-  />
-  <link rel="stylesheet" href="{% static 'juegos/css/catalogo.css' %}" />
-  <link rel="stylesheet" href="{% static 'juegos/css/background.css' %}" />
+{% extends 'juegos/base_catalogo.html' %}
 
-</head>
-<body>
-    <div class="background">
-        <div>
-            <a href="{% url 'index' %}" id="regresar">REGRESAR AL MENÚ</a>
-        </div>
-        <h1 id="categoria">Juegos Estim</h1>
-        <div class="contenedor">
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card" style="width: 18rem">
-                        <img src="{% static 'juegos/imagenes/counterstrike2.jpg' %}" class="card-img-top" alt="CS2"/>
-                        <div class="card-body">
-                            <h5 class="card-title" id="titulo1">COUNTER-STRIKE 2</h5>
-                            <p class="card-text" id="precio1">CLP$ 33.000</p>
-                            <a href="{% url 'detalles_cs2' %}" class="btn btn-primary">Ver Detalles</a>
-                        </div>
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-4">Juegos Estim</h1>
+    
+    <div class="row">
+        {% if productos %}
+            {% for producto in productos %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ producto.nombre }}</h5>
+                        <p class="card-text">CLP${{ producto.precio }}</p>
+                        <!-- Lógica para mostrar detalles -->
+                        <a href="{% if producto.sku == '1' %}{% url 'detalles_cs2' %}
+                                  {% elif producto.sku == '2' %}{% url 'detalles_gtav' %}
+                                  {% elif producto.sku == '3' %}{% url 'detalles_eldenring' %}
+                                  {% elif producto.sku == '4' %}{% url 'detalles_elderscroll' %}
+                                  {% elif producto.sku == '5' %}{% url 'detalles_dota2' %}
+                                  {% elif producto.sku == '6' %}{% url 'detalles_lostark' %}
+                                  {% elif producto.sku == '7' %}{% url 'detalles_palworld' %}
+                                  {% elif producto.sku == '8' %}{% url 'detalles_rocketleague' %}
+                                  {% elif producto.sku == '9' %}{% url 'detalles_fc24' %}
+                                  {% elif producto.sku == '10' %}{% url 'detalles_ark' %}
+                                  {% endif %}" class="btn btn-primary">Ver Detalles</a>
+
+                        <!-- Lógica para agregar al carrito si el usuario ha iniciado sesión -->
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'agregar_al_carrito' producto.sku %}" class="btn btn-success mt-2">Agregar al carrito</a>
+                        {% else %}
+                            <p class="text-danger mt-2">Debes entrar a tu cuenta para poder comprar!.</p>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card" style="width: 18rem">
-                        <img src="{% static 'juegos/imagenes/gtav.jpg' %}" class="card-img-top" alt="GTA V"/>
-                        <div class="card-body">
-                            <h5 class="card-title" id="titulo1">GRAND THEFT AUTO V</h5>
-                            <p class="card-text" id="precio1">CLP$ 15.000</p>
-                            <a href="{% url 'detalles_gtav' %}" class="btn btn-primary">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card" style="width: 18rem">
-                        <img src="{% static 'juegos/imagenes/eldenring.jpg' %}" class="card-img-top" alt="ELDER RING"/>
-                        <div class="card-body">
-                            <h5 class="card-title" id="titulo1">ELDEN RING</h5>
-                            <p class="card-text" id="precio1">CLP$ 38.500</p>
-                            <a href="{% url 'detalles_eldenring' %}" class="btn btn-primary">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card" style="width: 18rem">
-                        <img src="{% static 'juegos/imagenes/elderscrollv.jpg' %}" class="card-img-top" alt="SKYRIM V"/>
-                        <div class="card-body">
-                            <h5 class="card-title" id="titulo1">THE ELDER SCROLL V: Skyrim VR</h5>
-                            <p class="card-text" id="precio1">CLP$ 39.900</p>
-                            <a href="{% url 'detalles_elderscroll' %}" class="btn btn-primary">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card" style="width: 18rem">
-                        <img src="{% static 'juegos/imagenes/dota2.jpg' %}" class="card-img-top" alt="DOTA 2"/>
-                        <div class="card-body">
-                            <h5 class="card-title" id="titulo1">DOTA 2</h5>
-                            <p class="card-text" id="precio1">Jugar Ahora</p>
-                            <a href="{% url 'detalles_dota2' %}" class="btn btn-primary">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card" style="width: 18rem">
-                        <img src="{% static 'juegos/imagenes/lostark.jpg' %}" class="card-img-top" alt="LOST ARK"/>
-                        <div class="card-body">
-                            <h5 class="card-title" id="titulo1">LOST ARK</h5>
-                            <p class="card-text" id="precio1">Jugar Ahora</p>
-                            <a href="{% url 'detalles_lostark' %}" class="btn btn-primary">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card" style="width: 18rem">
-                        <img src="{% static 'juegos/imagenes/palworld.jpg' %}" class="card-img-top" alt="PALWORLD"/>
-                        <div class="card-body">
-                            <h5 class="card-title" id="titulo1">PALWORLD</h5>
-                            <p class="card-text" id="precio1">CLP$ 28.500</p>
-                            <a href="{% url 'detalles_palworld' %}" class="btn btn-primary">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card" style="width: 18rem">
-                        <img src="{% static 'juegos/imagenes/arksurvivalevolved.jpg' %}" class="card-img-top" alt="ARK-SE"/>
-                        <div class="card-body">
-                            <h5 class="card-title" id="titulo1">ARK: Survival Evolved</h5>
-                            <p class="card-text" id="precio1">CLP$ 8.300</p>
-                            <a href="{% url 'detalles_ark' %}" class="btn btn-primary">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card" style="width: 18rem">
-                        <img src="{% static 'juegos/imagenes/rocketleague.jpg' %}" class="card-img-top" alt="ROCKET LEAGUE"/>
-                        <div class="card-body">
-                            <h5 class="card-title" id="titulo1">ROCKET LEAGUE</h5>
-                            <p class="card-text" id="precio1">CLP$ 31.200</p>
-                            <a href="{% url 'detalles_rocketleague' %}" class="btn btn-primary">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="card" style="width: 18rem">
-                        <img src="{% static 'juegos/imagenes/fc24.jpg' %}" class="card-img-top" alt="FC24"/>
-                        <div class="card-body">
-                            <h5 class="card-title" id="titulo1">EA SPORTS FC™ 24</h5>
-                            <p class="card-text" id="precio1">CLP$ 55.900</p>
-                            <a href="{% url 'detalles_fc24' %}" class="btn btn-primary">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-            </div><!--cerrar row-->
-        </div><!--cerrar container-->
-    </div><!--cerrar background-->
-</body>
-</html>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No hay productos disponibles en este momento.</p>
+        {% endif %}
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'index' %}" class="btn btn-primary">Regresar al Menú</a>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
