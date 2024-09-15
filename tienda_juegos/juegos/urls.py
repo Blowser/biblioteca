@@ -45,4 +45,12 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     path('productos/crear/', views.crear_producto, name='crear_producto'),
     path('productos/editar/<str:sku>/', views.editar_producto, name='editar_producto'),
     path('productos/eliminar/<str:sku>/', views.eliminar_producto, name='eliminar_producto'),
+    
+    
+    #para el carrito
+    
+    path('carrito/', views.ver_carrito, name='ver_carrito'),
+    path('carrito/agregar/<int:producto_id>/', views.agregar_al_carrito, name='agregar_al_carrito'),
+    path('carrito/eliminar/<int:producto_id>/', views.eliminar_del_carrito, name='eliminar_del_carrito'),
+    path('carrito/vaciar/', views.vaciar_carrito, name='vaciar_carrito'),
 ]
