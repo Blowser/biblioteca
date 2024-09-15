@@ -136,11 +136,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'index'  
 LOGOUT_REDIRECT_URL = 'login'
 
-# Para el sistema de recuperación de contraseñas (configura el backend de correos)
+# Para el sistema de recuperación de contraseñas
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  
 
 LOGIN_URL = 'login'
-# settings.py
+
 LOGOUT_REDIRECT_URL = 'index' 
 
 MESSAGE_TAGS = {
