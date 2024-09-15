@@ -11,6 +11,7 @@ from django.contrib.auth import authenticate, login
 def index(request):
     return render(request, 'juegos/index.html')
 
+
 def ver_catalogo(request):
     productos = Producto.objects.all()  # Obtener todos los productos
     return render(request, 'juegos/vercatalogo.html', {'productos': productos})
@@ -179,40 +180,45 @@ def eliminar_producto(request, sku):
 
 
 
+# VISTAS PARA EL CARRITO
 
-#VISTAS PARA EL CARRITO
 @login_required
-def agregar_al_carrito(request, producto_id):
-    producto = get_object_or_404(Producto, id=producto_id)
-    producto_id_str = str(producto_id)
+def agregar_al_carrito(request, producto_sku):
+    producto = get_object_or_404(Producto, sku=producto_sku)  # Cambia de 'id' a 'sku'
     carrito = request.session.get('carrito', {})
     
-    if producto_id_str in carrito:
-        carrito[producto_id_str]['cantidad'] += 1
+    # Convertimos el SKU a string para usarlo como clave en el carrito
+    producto_sku_str = str(producto.sku)
+    
+    # Verificamos si el producto ya está en el carrito
+    if producto_sku_str in carrito:
+        carrito[producto_sku_str]['cantidad'] += 1
     else:
-        carrito[producto_id_str] = {
+        carrito[producto_sku_str] = {
             'nombre': producto.nombre,
             'precio': float(producto.precio),
             'cantidad': 1,
         }
     
+    # Guardamos el carrito en la sesión
     request.session['carrito'] = carrito
-    return redirect('vercatalogo')
+    return redirect('ver_catalogo')
 
 @login_required
 def ver_carrito(request):
     carrito = request.session.get('carrito', {})
     total = sum(item['precio'] * item['cantidad'] for item in carrito.values())
-    return render(request, 'MiApp/ver_carrito.html', {'carrito': carrito, 'total': total})
+    return render(request, 'juegos/ver_carrito.html', {'carrito': carrito, 'total': total})
 
 @login_required
-def eliminar_del_carrito(request, producto_id):
-    producto_id_str = str(producto_id)
+def eliminar_del_carrito(request, producto_sku):
+    producto_sku_str = str(producto_sku)
     carrito = request.session.get('carrito', {})
     
-    if producto_id_str in carrito:
-        del carrito[producto_id_str]
+    if producto_sku_str in carrito:
+        del carrito[producto_sku_str]
     
+    # Guardamos el carrito actualizado en la sesión
     request.session['carrito'] = carrito
     return redirect('ver_carrito')
 
