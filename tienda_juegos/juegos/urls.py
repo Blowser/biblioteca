@@ -18,13 +18,13 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     path('registrarcuenta/', views.registrar_cuenta, name='registrar_cuenta'),
     path('modificarperfil/', views.modificar_perfil, name='modificar_perfil'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    #recuperación de contraseña:
     
+    #paths de recuperación de contraseña:
     path('recuperarcontrasena/', auth_views.PasswordResetView.as_view(template_name='juegos/recuperarcontrasena.html'), name='password_reset'),
     path('recuperarcontrasena/enviado/', auth_views.PasswordResetDoneView.as_view(template_name='juegos/recuperarcontrasenadone.html'), name='password_reset_done'),
     path('recuperarcontrasena/confirmar/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='recuperarcontrasenaconfirm.html'), name='password_reset_confirm'),
     path('recuperarcontrasena/completo/', auth_views.PasswordResetCompleteView.as_view(template_name='juegos/recuperarcontrasenacomplete.html'), name='password_reset_complete'),
-    # Página para enviar el correo de recuperación de contraseña
+
  
 
 
