@@ -1,0 +1,26 @@
+{% extends 'juegos/base_catalogo.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Tu Carrito de Compras</h2>
+
+    {% if carrito %}
+        <ul class="list-group">
+            {% for producto_sku, producto in carrito.items %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ producto.nombre }} - CLP${{ producto.precio }}
+                <a href="{% url 'eliminar_del_carrito' producto_sku %}" class="btn btn-danger">Eliminar</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="mt-4">
+            <a href="{% url 'vaciar_carrito' %}" class="btn btn-warning">Vaciar carrito</a>
+            <a href="#" class="btn btn-success">Finalizar compra</a>
+        </div>
+    {% else %}
+        <p>Tu carrito está vacío.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+
