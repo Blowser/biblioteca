@@ -3,46 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Gestión de Productos{% endblock %}</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>{% block title %}Productos{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <header class="bg-light p-3 mb-4 border-bottom">
-        <div class="container">
-            <h1 class="mb-0">Gestión de Productos Estim</h1>
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="{% url 'listar_productos' %}">Productos</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'crear_producto' %}">Crear Producto</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-light bg-light mb-3">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Gestión de Productos Estim</span>
+            <div class="d-flex">
+                <!-- Botón Crear Producto -->
+                <a href="{% url 'crear_producto' %}" class="btn btn-primary me-2">Crear Producto</a>
+                
+                <!-- Botón Cerrar Sesión -->
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                </form>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <main class="container">
+    <div class="container">
         {% block content %}
-        <!-- Aquí se insertará el contenido específico de cada vista -->
+        <!-- Contenido dinámico aquí -->
         {% endblock %}
-    </main>
+    </div>
 
-    <footer class="bg-dark text-white text-center p-3 mt-4">
-        <p>© 2024 Gestión de Productos Estim- Todos los derechos reservados</p>
+    <footer class="text-center mt-4">
+        <p>&copy; 2024 Gestión de Productos Estim - Todos los derechos reservados</p>
     </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
 
 
