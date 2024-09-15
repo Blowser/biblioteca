@@ -161,13 +161,14 @@ def crear_producto(request):
 def editar_producto(request, sku):
     producto = get_object_or_404(Producto, sku=sku)
     if request.method == 'POST':
-        form = ProductoForm(request.POST, instance=producto)
+        form = ProductoForm(request.POST, request.FILES, instance=producto)
         if form.is_valid():
             form.save()
             return redirect('listar_productos')
     else:
         form = ProductoForm(instance=producto)
-    return render(request, 'juegos/editar_producto.html', {'form': form, 'producto': producto})
+    
+    return render(request, 'juegos/editar_producto.html', {'form': form})
 
 @user_passes_test(es_superuser)
 @login_required
