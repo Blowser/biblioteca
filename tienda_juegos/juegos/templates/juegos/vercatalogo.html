@@ -1,4 +1,5 @@
 {% extends 'juegos/base_catalogo.html' %}
+{% load static %}
 
 {% block content %}
 <div class="container">
@@ -9,11 +10,17 @@
             {% for producto in productos %}
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
+                    <!-- Verifica si el producto tiene una imagen asociada -->
+                    {% if producto.imagen %}
                     <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                    {% else %}
+                    <img src="{% static 'default-image.jpg' %}" class="card-img-top" alt="{{ producto.nombre }}">
+                    {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ producto.nombre }}</h5>
                         <p class="card-text">CLP${{ producto.precio }}</p>
-                        <!-- Lógica para mostrar detalles -->
+
+                        <!-- Lógica para mostrar detalles según el SKU -->
                         <a href="{% if producto.sku == '1' %}{% url 'detalles_cs2' %}
                                   {% elif producto.sku == '2' %}{% url 'detalles_gtav' %}
                                   {% elif producto.sku == '3' %}{% url 'detalles_eldenring' %}
@@ -46,6 +53,8 @@
     </div>
 </div>
 {% endblock %}
+
+
 
 
 
