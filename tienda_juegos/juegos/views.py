@@ -12,7 +12,9 @@ def index(request):
     return render(request, 'juegos/index.html')
 
 def ver_catalogo(request):
-    return render(request, 'juegos/vercatalogo.html')
+    productos = Producto.objects.all()  # Obtener todos los productos
+    return render(request, 'juegos/vercatalogo.html', {'productos': productos})
+
 
 def categoria_accion(request):
     return render(request, 'juegos/accion.html')
@@ -177,3 +179,44 @@ def eliminar_producto(request, sku):
 
 
 
+
+#VISTAS PARA EL CARRITO
+@login_required
+def agregar_al_carrito(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+    producto_id_str = str(producto_id)
+    carrito = request.session.get('carrito', {})
+    
+    if producto_id_str in carrito:
+        carrito[producto_id_str]['cantidad'] += 1
+    else:
+        carrito[producto_id_str] = {
+            'nombre': producto.nombre,
+            'precio': float(producto.precio),
+            'cantidad': 1,
+        }
+    
+    request.session['carrito'] = carrito
+    return redirect('vercatalogo')
+
+@login_required
+def ver_carrito(request):
+    carrito = request.session.get('carrito', {})
+    total = sum(item['precio'] * item['cantidad'] for item in carrito.values())
+    return render(request, 'MiApp/ver_carrito.html', {'carrito': carrito, 'total': total})
+
+@login_required
+def eliminar_del_carrito(request, producto_id):
+    producto_id_str = str(producto_id)
+    carrito = request.session.get('carrito', {})
+    
+    if producto_id_str in carrito:
+        del carrito[producto_id_str]
+    
+    request.session['carrito'] = carrito
+    return redirect('ver_carrito')
+
+@login_required
+def vaciar_carrito(request):
+    request.session['carrito'] = {}
+    return redirect('ver_carrito')
