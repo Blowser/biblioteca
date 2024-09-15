@@ -50,7 +50,9 @@ class Producto(models.Model):
     desarrollador = models.ForeignKey(Desarrollador, on_delete=models.CASCADE)  # Relación con Desarrollador
     editor = models.ForeignKey(Editor, on_delete=models.CASCADE)  # Relación con Editor
     restriccion = models.ForeignKey(Restriccion, on_delete=models.SET_NULL, null=True, blank=True)  # Relación con Restricción
+    imagen = models.ImageField(upload_to='productos/', blank=True, null=True)  # Campo de imagen para los productos
 
     def __str__(self):
         return self.nombre
+
 
