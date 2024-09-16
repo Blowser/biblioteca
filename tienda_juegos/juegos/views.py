@@ -49,7 +49,7 @@ def iniciar_sesion(request):
             if user.is_superuser:
                 return redirect('listar_productos')
             # Si es un usuario normal, redirigir a la página principal
-            return redirect('index')
+            return redirect('modificar_perfil')
         else:
             # Si las credenciales no son válidas, mostrar error
             return render(request, 'juegos/iniciarsesion.html', {'error': 'Credenciales inválidas'})  
@@ -82,16 +82,13 @@ def registrar_cuenta(request):
 def modificar_perfil(request):
     if request.method == 'POST':
         user = request.user
-        user.first_name = request.POST['first_name']
-        user.last_name = request.POST['last_name']
-        user.email = request.POST['email']
-        # Puedes agregar más campos personalizados como teléfono o dirección si tienes los modelos correctos
-        # user.telefono = request.POST.get('telefono', '')
-        # user.direccion = request.POST.get('direccion', '')
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        user.email = request.POST.get('email')
         user.save()
-        messages.success(request, 'Perfil actualizado correctamente.')
         return redirect('modificar_perfil')
-    return render(request, 'juegos/modificarperfil.html', {'user': request.user})
+    
+    return render(request, 'juegos/modificarperfil.html')
 
 def recuperar_contrasena(request):
     return render(request, 'juegos/recuperarcontrasena.html')
