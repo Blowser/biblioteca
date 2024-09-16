@@ -53,61 +53,47 @@ $('#registroFormularioJS').submit(function(event) {
 })
 
         // VALIDACIÓN FORM MODIFICAR PERFIL
-     $('#modificarPerfilFormularioJS').submit(function(event) {
-         event.preventDefault();
-        let valid = true;
-    
-         const nombre = $('#nombre').val().trim();
-         const apellido = $('#apellido').val().trim();
-         const correo = $('#correo').val().trim();
-         const telefono = $('#telefono').val().trim();
-         const direccion = $('#direccion').val().trim();
-         const mayusculaRegex = /[A-Z]/; //MINIMO UNA MAYUSCULA PARA LOS NOMBRES
-    
-         if (!nombre || !mayusculaRegex.test(nombre)) {
-             $('#errorNombre').text('El nombre debe tener almenos una mayúscula');
-             valid = false;
-         } else {
-             $('#errorNombre').text('');
-         }
-    
-         if (!apellido || !mayusculaRegex.test(nombre)) {
-            $('#errorApellido').text('El apellido es debe tener almenos una mayúscula');
-             valid = false;
-         } else {
-            $('#errorApellido').text('');
-         }
-    
-         if (!correo || !/^\S+@\S+\.\S+$/.test(correo)) {
-             $('#errorCorreo').text('El correo electrónico es inválido');
-             valid = false;
-         } else {
-             $('#errorCorreo').text('');
-            }
-    
-         if (!telefono || !/^\d{9,15}$/.test(telefono)) {
-             $('#errorTelefono').text('El número de teléfono debe tener entre 9 y 15 dígitos');
-             valid = false;
-         } else {
-             $('#errorTelefono').text('');
-            }
-    
-         if (!direccion) {
-             $('#errorDireccion').text('La dirección es obligatoria');
-             valid = false;
-         } else {
-             $('#errorDireccion').text('');
-            }
-    
-         if (valid) {
-             alert('Información guardada con éxito');
-             $('#mensajeErrorModificarPerfil').text('');
-         } else {
-             $('#mensajeErrorModificarPerfil').text('Por favor, corrige los errores en el formulario');
-         }
+        $('#modificarPerfilFormularioJS').submit(function(event) {
+            event.preventDefault();  // Prevenir el envío por defecto del formulario
+            let valid = true;
         
-    });
-    
+            const nombre = $('#nombre').val().trim();
+            const apellido = $('#apellido').val().trim();
+            const correo = $('#correo').val().trim();
+            const mayusculaRegex = /[A-Z]/; // Expresión regular para al menos una mayúscula
+        
+            // Validación de nombre (debe contener al menos una mayúscula)
+            if (!nombre || !mayusculaRegex.test(nombre)) {
+                $('#errorNombre').text('El nombre debe tener al menos una mayúscula');
+                valid = false;
+            } else {
+                $('#errorNombre').text('');
+            }
+        
+            // Validación de apellido (debe contener al menos una mayúscula)
+            if (!apellido || !mayusculaRegex.test(apellido)) {
+                $('#errorApellido').text('El apellido debe tener al menos una mayúscula');
+                valid = false;
+            } else {
+                $('#errorApellido').text('');
+            }
+        
+            // Validación de correo electrónico
+            if (!correo || !/^\S+@\S+\.\S+$/.test(correo)) {
+                $('#errorCorreo').text('El correo electrónico es inválido');
+                valid = false;
+            } else {
+                $('#errorCorreo').text('');
+            }
+        
+            // Si todas las validaciones pasan, enviamos el formulario
+            if (valid) {
+                $('#modificarPerfilFormularioJS')[0].submit();  // Enviar el formulario si es válido
+                $('#mensajeErrorModificarPerfil').text('');
+            } else {
+                $('#mensajeErrorModificarPerfil').text('Por favor, corrige los errores en el formulario');
+            }
+        });
 
 
 
