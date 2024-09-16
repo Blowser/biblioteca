@@ -29,37 +29,25 @@
           <form method="post" action="{% url 'modificar_perfil' %}" id="modificarPerfilFormularioJS">
             {% csrf_token %}
             <div class="form-group">
-              <label for="nombre">Nombre:</label>
-              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre">
-              <div id="errorNombre" class="text-danger"></div>
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="first_name" value="{{ user.first_name }}" placeholder="Ingrese su nombre">
+                <div id="errorNombre" class="text-danger"></div>
             </div>
-
+        
             <div class="form-group">
-              <label for="apellido">Apellido:</label>
-              <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese su apellido">
-              <div id="errorApellido" class="text-danger"></div>
+                <label for="apellido">Apellido:</label>
+                <input type="text" class="form-control" id="apellido" name="last_name" value="{{ user.last_name }}" placeholder="Ingrese su apellido">
+                <div id="errorApellido" class="text-danger"></div>
             </div>
-
+        
             <div class="form-group">
-              <label for="correo">Correo Electrónico:</label>
-              <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese su correo electrónico">
-              <div id="errorCorreo" class="text-danger"></div>
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="correo" name="email" value="{{ user.email }}" placeholder="Ingrese su correo electrónico">
+                <div id="errorCorreo" class="text-danger"></div>
             </div>
-
-            <div class="form-group">
-              <label for="telefono">Número de Teléfono:</label>
-              <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingrese su número de teléfono">
-              <div id="errorTelefono" class="text-danger"></div>
-            </div>
-
-            <div class="form-group">
-              <label for="direccion">Dirección:</label>
-              <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingrese su dirección">
-              <div id="errorDireccion" class="text-danger"></div>
-            </div>
-
+        
             <button type="submit" class="btn btn-primary">Guardar</button>
-          </form>
+        </form>
         </div>
       </div>
     </div>
