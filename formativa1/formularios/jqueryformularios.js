@@ -1,98 +1,68 @@
 $(document).ready(function() {
         // VALIDACIÓN FORM CREAR CUENTA NUEVA
-    $('#registroFormularioJS').submit(function(event) {
-        event.preventDefault(); // Detiene el envío del formulario por defecto
-        let valid = true;
-
-        const nombreCompleto = $('#nombreCompleto').val().trim();
-        const nombreUsuario = $('#nombreUsuario').val().trim();
-        const correo = $('#correo').val().trim();
-        const contrasena = $('#contrasena').val().trim();
-        const confirmarContrasena = $('#confirmarContrasena').val().trim();
-        const fechaNacimiento = $('#fechaNacimiento').val().trim();
-        const fechaactual = new Date();
-        const edad = fechaactual.getFullYear() - new Date(fechaNacimiento).getFullYear();
-        const mes = fechaactual.getMonth() - new Date(fechaNacimiento).getMonth();
-
-        if (!nombreCompleto) {
-            $('#errorNombreCompleto').text('Tu nombre es obligatorio');
-            valid = false;
-        } else {
-            $('#errorNombreCompleto').text('');
-        }
-
-        if (!nombreUsuario || nombreUsuario.length < 6) {
-            $('#errorNombreUsuario').text('El nombre de usuario debe tener al menos 6 caracteres');
-            valid = false;
-        } else {
-            $('#errorNombreUsuario').text('');
-        }
-
-        if (!correo || !/^\S+@\S+\.\S+$/.test(correo)) {
-            $('#errorCorreo').text('El correo electrónico es inválido');
-            valid = false;
-        } else {
-            $('#errorCorreo').text('');
-        }
-
-        if (!contrasena || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,18}$/.test(contrasena)) {
-            $('#errorContrasena').text('La contraseña debe tener entre 6-18 caracteres, y al menos 1: mayúscula, minúscula, dígito y carácter especial');
-            valid = false;
-        } else {
-            $('#errorContrasena').text('');
-        }
-
-        if (confirmarContrasena !== contrasena) {
-            $('#errorConfirmarContrasena').text('Las contraseñas no coinciden');
-            valid = false;
-        } else {
-            $('#errorConfirmarContrasena').text('');
-        }
-
-        if (edad < 13 || (edad === 13 && mes < 0)) {
-            $('#errorFechaNacimiento').text('Debes tener al menos 13 años de edad para registrarte');
-            valid = false;
-        } else {
-            $('#errorFechaNacimiento').text('');
-        }
-
-        if (valid) {
-            $('#mensajeErrorRegistro').text('');
-            alert('Formulario enviado con éxito');
-            window.location.href = "modificarperfil.html"; // REDIRECCIONAMOS A MODIFICAR PERFIL
+        $('#registroFormularioJS').submit(function(event) {
+            let valid = true;
         
-        } else {
-            $('#mensajeErrorRegistro').text('Por favor, corrige los errores en el formulario');
-        }
-    });
-
-    // Función para limpiar el formulario y los mensajes de error
-    window.limpiarFormulario = function() {
-        $('#registroFormularioJS')[0].reset();
-        $('.text-danger').text('');
-        $('#mensajeError').text('');
-    }
-
-
-    // VALIDACIÓN FORM RECUPERAR CONTRASEÑA
-    $('#recuperarContrasenaFormularioJS').submit(function(event) {
-        event.preventDefault();
-        let valid = true;
-        const correo = $('#correo').val().trim();
-
-        if (!correo|| !/^\S+@\S+\.\S+$/.test(correo)) {
-            $('#errorCorreoRecuperacion').text('Por favor, ingresa un correo válido');
-            valid = false;
-        } else {
-            $('#errorCorreoRecuperacion').text('');}
-
-        if (valid) {
-            $('#mensajeErrorRecuperacion').text('');
-            alert('Enlace de recuperación enviado con éxito');
-            window.location.href = "iniciarsesion.html"; // REDIRECCIONAMOS A INICIAR SESIÓN
-        }else {
-         $('#mensajeErrorRecuperacion').text('Por favor, corrige el formulario');}
-    })
+            const firstName = $('#first_name').val().trim();
+            const lastName = $('#last_name').val().trim();
+            const username = $('#username').val().trim();
+            const email = $('#email').val().trim();
+            const password1 = $('#password1').val().trim();
+            const password2 = $('#password2').val().trim();
+        
+            // Validación de nombre
+            if (!firstName || firstName.length < 2) {
+                $('#errorFirstName').text('El nombre debe tener al menos 2 caracteres');
+                valid = false;
+            } else {
+                $('#errorFirstName').text('');
+            }
+        
+            // Validación de apellido
+            if (!lastName || lastName.length < 2) {
+                $('#errorLastName').text('El apellido debe tener al menos 2 caracteres');
+                valid = false;
+            } else {
+                $('#errorLastName').text('');
+            }
+        
+            // Validación de nombre de usuario
+            if (!username || username.length < 6) {
+                $('#errorUsername').text('El nombre de usuario debe tener al menos 6 caracteres');
+                valid = false;
+            } else {
+                $('#errorUsername').text('');
+            }
+        
+            // Validación de correo electrónico
+            if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+                $('#errorEmail').text('Por favor, ingresa un correo válido');
+                valid = false;
+            } else {
+                $('#errorEmail').text('');
+            }
+        
+            // Validación de contraseña
+            if (!password1 || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,18}$/.test(password1)) {
+                $('#errorPassword1').text('La contraseña debe tener entre 6-18 caracteres, incluyendo una mayúscula, una minúscula, un dígito y un carácter especial');
+                valid = false;
+            } else {
+                $('#errorPassword1').text('');
+            }
+        
+            // Validación de confirmación de contraseña
+            if (password1 !== password2) {
+                $('#errorPassword2').text('Las contraseñas no coinciden');
+                valid = false;
+            } else {
+                $('#errorPassword2').text('');
+            }
+        
+            if (!valid) {
+                event.preventDefault();  // Solo detén el envío si hay errores
+            }
+        });
+        
 
     // VALIDACIÓN FORM INICIO SESION
     $('#iniciarSesionFormularioJS').submit(function(event) {
