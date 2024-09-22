@@ -8,12 +8,18 @@
         <ul class="list-group">
             {% for producto_sku, producto in carrito.items %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{ producto.nombre }} - CLP${{ producto.precio }}
+                {{ producto.nombre }} - CLP${{ producto.precio }} 
+                <form method="POST" action="{% url 'actualizar_cantidad_carrito' producto_sku %}" class="d-inline">
+                    {% csrf_token %}
+                    <input type="number" name="cantidad" value="{{ producto.cantidad }}" min="1" style="width: 60px;">
+                    <button type="submit" class="btn btn-primary btn-sm">Actualizar</button>
+                </form>
                 <a href="{% url 'eliminar_del_carrito' producto_sku %}" class="btn btn-danger">Eliminar</a>
             </li>
             {% endfor %}
         </ul>
         <div class="mt-4">
+            <h3>Total: CLP${{ total }}</h3>
             <a href="{% url 'vaciar_carrito' %}" class="btn btn-warning">Vaciar carrito</a>
             <a href="#" class="btn btn-success">Finalizar compra</a>
         </div>
@@ -22,5 +28,8 @@
     {% endif %}
 </div>
 {% endblock %}
+
+
+
 
 
