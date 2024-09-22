@@ -224,3 +224,20 @@ def eliminar_del_carrito(request, producto_sku):
 def vaciar_carrito(request):
     request.session['carrito'] = {}
     return redirect('ver_carrito')
+
+@login_required
+def actualizar_cantidad_carrito(request, producto_sku):
+    if request.method == 'POST':
+        nueva_cantidad = int(request.POST.get('cantidad', 1))
+        carrito = request.session.get('carrito', {})
+        producto_sku_str = str(producto_sku)
+
+        if producto_sku_str in carrito:
+            if nueva_cantidad > 0:
+                carrito[producto_sku_str]['cantidad'] = nueva_cantidad
+            else:
+                del carrito[producto_sku_str]  # Elimina el producto si la cantidad es 0
+
+        request.session['carrito'] = carrito
+    return redirect('ver_carrito')
+
