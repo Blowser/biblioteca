@@ -252,27 +252,76 @@ from rest_framework.decorators import permission_classes
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
-def productos_api(request):
-    # Si el método es GET, devolver la lista de productos
-    if request.method == 'GET':
-        productos = Producto.objects.all()
-        serializer = ProductoSerializer(productos, many=True)  # many=True porque es una lista
-        return Response(serializer.data, status=status.HTTP_200_OK)
+def productos_api(request, pk=None):
     
-    # Si el método es POST, crear un nuevo producto
-    if request.method == 'POST':
+    # Manejar solicitud GET para un producto específico o todos los productos
+    if request.method == 'GET':
+        if pk:
+            producto = get_object_or_404(Producto, pk=pk)
+            serializer = ProductoSerializer(producto)
+        else:
+            productos = Producto.objects.all()
+            serializer = ProductoSerializer(productos, many=True)
+        return Response(serializer.data)
+
+    # Manejar solicitud POST para crear un nuevo producto
+    elif request.method == 'POST':
         serializer = ProductoSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)  # Producto creado
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  # Si los datos son inválidos
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # Manejar solicitud PUT para actualizar un producto existente
+    elif request.method == 'PUT':
+        producto = get_object_or_404(Producto, pk=pk)
+        serializer = ProductoSerializer(producto, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # Manejar solicitud DELETE para eliminar un producto
+    elif request.method == 'DELETE':
+        producto = get_object_or_404(Producto, pk=pk)
+        producto.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
     
 import requests
+from django.core.cache import cache
 def listar_categorias_comida(request):
-    url = "https://www.themealdb.com/api/json/v1/1/categories.php"  # URL de la API de categorías de comida
-    response = requests.get(url)  # Realiza la solicitud GET a la API
-    data = response.json()  # Convierte la respuesta a formato JSON
+    # Intentar obtener las categorías desde el caché
+    categorias = cache.get('categorias_comida')
 
-    categorias = data['categories']  # Obtiene las categorías de comida
+    if not categorias:
+        # Si las categorías no están en caché, hacer la solicitud a la API
+        url = "https://www.themealdb.com/api/json/v1/1/categories.php"
+        response = requests.get(url)
+        data = response.json()
 
+        # Extraer las categorías de la respuesta
+        categorias = data['categories']
+
+        # Guardar las categorías en el caché con un timeout de 1 hora (3600 segundos)
+        cache.set('categorias_comida', categorias, timeout=60 * 60)
+
+    # Renderizar la plantilla con las categorías obtenidas
     return render(request, 'juegos/listar_categorias_comida.html', {'categorias': categorias})
+from django.core.paginator import Paginator
+
+def detalle_categoria(request, categoria_nombre):
+    # URL para obtener las comidas de la categoría
+    url = f"https://www.themealdb.com/api/json/v1/1/filter.php?c={categoria_nombre}"
+    response = requests.get(url)
+    data = response.json()
+    
+    # Obtener las comidas de la categoría
+    comidas = data['meals']
+    
+    # Configurar el paginador: 6 comidas por página
+    paginator = Paginator(comidas, 6) 
+    page_number = request.GET.get('page')  # Obtener el número de página desde la URL
+    page_obj = paginator.get_page(page_number)  # Obtener la página actual
+
+    # Renderizar la plantilla con el objeto de la página actual
+    return render(request, 'juegos/detalle_categoria.html', {'page_obj': page_obj, 'categoria': categoria_nombre})
