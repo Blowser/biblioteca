@@ -15,6 +15,7 @@
                 <!-- Botón Crear Producto -->
                 <a href="{% url 'crear_producto' %}" class="btn btn-primary me-2">Crear Producto</a>
                 
+                
                 <!-- Botón Cerrar Sesión -->
                 <form method="POST" action="{% url 'logout' %}">
                     {% csrf_token %}
