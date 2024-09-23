@@ -2,6 +2,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
+from .views import productos_api
 urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar en los htmls
                
     path('', views.index, name='index'),
@@ -53,4 +54,9 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     path('carrito/eliminar/<str:producto_sku>/', views.eliminar_del_carrito, name='eliminar_del_carrito'),
     path('carrito/vaciar/', views.vaciar_carrito, name='vaciar_carrito'),
     path('carrito/actualizar/<str:producto_sku>/', views.actualizar_cantidad_carrito, name='actualizar_cantidad_carrito'),
+    
+    #PARA LA API
+    path('api/productos/', productos_api, name='productos_api'),
+    path('categorias-comida/', views.listar_categorias_comida, name='listar_categorias_comida'),
+
 ]
