@@ -3,6 +3,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from .views import productos_api
+from .views import detalle_categoria
 urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar en los htmls
                
     path('', views.index, name='index'),
@@ -57,6 +58,11 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     
     #PARA LA API
     path('api/productos/', productos_api, name='productos_api'),
+    path('api/productos/<int:pk>/', productos_api, name='producto_detalle'),
+
     path('categorias-comida/', views.listar_categorias_comida, name='listar_categorias_comida'),
+    path('categoria/<str:categoria_nombre>/', detalle_categoria, name='detalle_categoria'),
+
+
 
 ]
