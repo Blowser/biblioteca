@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth import authenticate, login
 
 
+
 # para el index
 def index(request):
     return render(request, 'juegos/index.html')
@@ -240,4 +241,38 @@ def actualizar_cantidad_carrito(request, producto_sku):
 
         request.session['carrito'] = carrito
     return redirect('ver_carrito')
+# PARA LA API
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Producto
+from .serializers import ProductoSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
 
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def productos_api(request):
+    # Si el método es GET, devolver la lista de productos
+    if request.method == 'GET':
+        productos = Producto.objects.all()
+        serializer = ProductoSerializer(productos, many=True)  # many=True porque es una lista
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    # Si el método es POST, crear un nuevo producto
+    if request.method == 'POST':
+        serializer = ProductoSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)  # Producto creado
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  # Si los datos son inválidos
+    
+import requests
+def listar_categorias_comida(request):
+    url = "https://www.themealdb.com/api/json/v1/1/categories.php"  # URL de la API de categorías de comida
+    response = requests.get(url)  # Realiza la solicitud GET a la API
+    data = response.json()  # Convierte la respuesta a formato JSON
+
+    categorias = data['categories']  # Obtiene las categorías de comida
+
+    return render(request, 'juegos/listar_categorias_comida.html', {'categorias': categorias})
