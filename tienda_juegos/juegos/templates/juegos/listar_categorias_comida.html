@@ -14,6 +14,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ categoria.strCategory }}</h5>
                     <p class="card-text">{{ categoria.strCategoryDescription }}</p>
+                    <!-- Añadir botón de Ver detalles -->
+                    <a href="{% url 'detalle_categoria' categoria.strCategory %}" class="btn btn-primary">Ver detalles</a>
                 </div>
             </div>
         </div>
@@ -22,3 +24,4 @@
 </div>
 
 {% endblock %}
+
