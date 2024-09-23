@@ -1,0 +1,24 @@
+{% extends "juegos/base_catalogo.html" %}
+
+{% block title %}Categorías de Comidas{% endblock %}
+
+{% block content %}
+<h2>Categorías de Comidas</h2>
+
+<div class="container">
+    <div class="row">
+        {% for categoria in categorias %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ categoria.strCategoryThumb }}" class="card-img-top" alt="{{ categoria.strCategory }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ categoria.strCategory }}</h5>
+                    <p class="card-text">{{ categoria.strCategoryDescription }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
