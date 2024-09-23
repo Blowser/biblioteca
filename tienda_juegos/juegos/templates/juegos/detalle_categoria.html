@@ -1,0 +1,44 @@
+{% extends "juegos/base_catalogo.html" %}
+
+{% block title %}Comidas en {{ categoria_nombre }}{% endblock %}
+
+{% block content %}
+<h2>Comidas en {{ categoria_nombre }}</h2>
+
+<div class="container">
+    <div class="row">
+        {% for comida in page_obj %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="{{ comida.strMealThumb }}" class="card-img-top" alt="{{ comida.strMeal }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ comida.strMeal }}</h5>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Paginación -->
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Primero</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Último &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}
+
+
