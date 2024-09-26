@@ -18,6 +18,7 @@
         {% if user.is_authenticated %}
             <p>Bienvenido, {{ user.username }}!</p>
             <a href="{% url 'ver_catalogo' %}" class="mr-3 linkcatalogo">Ver catálogo completo</a>
+            <a href="http://127.0.0.1:8000/categorias-comida/" class="mr-3 linkcatalogo">Noticias Juegos</a>
 
             <!-- Formulario para cerrar sesión -->
             <form method="POST" action="{% url 'logout' %}">
@@ -26,6 +27,7 @@
             </form>
         {% else %}
             <a href="{% url 'ver_catalogo' %}" class="mr-3 linkcatalogo">Ver catálogo completo</a>
+            <a href="http://127.0.0.1:8000/categorias-comida/" class="mr-3 linkcatalogo">Noticias Juegos</a>
             <a href="{% url 'iniciar_sesion' %}" class="mr-3 linkcatalogo">Iniciar sesión</a>
         {% endif %}
 
@@ -48,6 +50,7 @@
     </div>
 </body>
 </html>
+
 
 
 
