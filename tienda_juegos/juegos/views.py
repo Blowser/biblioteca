@@ -250,11 +250,10 @@ from .serializers import ProductoSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 #API PROPIA
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 @user_passes_test(es_superuser)
 def productos_api(request, pk=None):
-    
     # Manejar solicitud GET para un producto específico o todos los productos
     if request.method == 'GET':
         if pk:
@@ -287,6 +286,7 @@ def productos_api(request, pk=None):
         producto = get_object_or_404(Producto, pk=pk)
         producto.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 #PARA LA API CONSUMIDA    
 import requests
 from django.core.cache import cache
