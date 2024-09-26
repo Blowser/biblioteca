@@ -241,7 +241,7 @@ def actualizar_cantidad_carrito(request, producto_sku):
 
         request.session['carrito'] = carrito
     return redirect('ver_carrito')
-# PARA LA API
+# PARA LAS APIS
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -249,7 +249,7 @@ from .models import Producto
 from .serializers import ProductoSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
-
+#API PROPIA
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def productos_api(request, pk=None):
@@ -286,7 +286,7 @@ def productos_api(request, pk=None):
         producto = get_object_or_404(Producto, pk=pk)
         producto.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
+#PARA LA API CONSUMIDA    
 import requests
 from django.core.cache import cache
 def listar_categorias_comida(request):
