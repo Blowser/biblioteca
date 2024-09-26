@@ -56,12 +56,13 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     path('carrito/vaciar/', views.vaciar_carrito, name='vaciar_carrito'),
     path('carrito/actualizar/<str:producto_sku>/', views.actualizar_cantidad_carrito, name='actualizar_cantidad_carrito'),
     
-    #PARA LA API
-    path('api/productos/', productos_api, name='productos_api'),
-    path('api/productos/<int:pk>/', productos_api, name='producto_detalle'),
-
+    #PARA LA API COMIDAS
     path('categorias-comida/', views.listar_categorias_comida, name='listar_categorias_comida'),
     path('categoria/<str:categoria_nombre>/', detalle_categoria, name='detalle_categoria'),
+        #PARA LA APIREST
+    path('api/productos/', views.productos_api, name='productos_api'),
+    path('api/productos/<int:pk>/', productos_api, name='producto_detalle'),
+
 
 
 
