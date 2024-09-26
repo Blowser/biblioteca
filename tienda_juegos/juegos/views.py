@@ -252,6 +252,7 @@ from rest_framework.decorators import permission_classes
 #API PROPIA
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
+@user_passes_test(es_superuser)
 def productos_api(request, pk=None):
     
     # Manejar solicitud GET para un producto específico o todos los productos
