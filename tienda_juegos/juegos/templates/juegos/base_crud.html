@@ -24,6 +24,9 @@
                 <!-- Botón Listar Pedidos (conectado a listar_pedidos.html) -->
                 <a href="{% url 'listar_pedidos' %}" class="btn btn-info me-2">Ver Pedidos</a>
 
+                <!-- Botón Próximos Lanzamientos -->
+                <a href="{% url 'proximos_lanzamientos' %}" class="btn btn-warning me-2">Próximos Lanzamientos</a>
+
                 <!-- Botón Cerrar Sesión -->
                 <form method="POST" action="{% url 'logout' %}">
                     {% csrf_token %}
@@ -44,6 +47,7 @@
     </footer>
 </body>
 </html>
+
 
 
 
