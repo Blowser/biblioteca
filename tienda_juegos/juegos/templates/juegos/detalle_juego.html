@@ -1,0 +1,16 @@
+{% extends 'juegos/base_catalogo.html' %}
+
+{% block title %}
+    Detalles de {{ juego.name }}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>{{ juego.name }}</h1>
+    <img src="{{ juego.background_image }}" class="img-fluid" alt="{{ juego.name }}">
+    <p><strong>Fecha de lanzamiento:</strong> {{ juego.released }}</p>
+    <p><strong>Descripción:</strong> {{ juego.description_raw }}</p>
+    <p><strong>Metacritic:</strong> {{ juego.metacritic }}</p>
+    <a href="{{ juego.website }}" class="btn btn-primary">Visitar sitio web</a>
+</div>
+{% endblock %}
