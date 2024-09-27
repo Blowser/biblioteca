@@ -1,0 +1,26 @@
+{% extends 'juegos/base_catalogo.html' %}
+
+{% block title %}
+    Próximos Lanzamientos de Juegos para PC
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Próximos Lanzamientos de Juegos para PC</h1>
+        
+        <div class="row">
+            {% for juego in juegos %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="{{ juego.background_image }}" class="card-img-top" alt="{{ juego.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ juego.name }}</h5>
+                        <p class="card-text">Fecha de lanzamiento: {{ juego.released }}</p>
+                        <a href="{{ juego.website }}" class="btn btn-primary">Más información</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
