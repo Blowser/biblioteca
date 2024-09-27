@@ -2,8 +2,16 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
+from rest_framework.routers import DefaultRouter
+from .views import ProductoViewSet, PedidoViewSet
 from .views import productos_api
 from .views import detalle_categoria
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
+from .views import ListarPedidosView, CrearPedidoView, EditarPedidoView, EliminarPedidoView
+
+router = DefaultRouter()
+router.register(r'productos', ProductoViewSet)  # Registrar el ViewSet de Producto
+router.register(r'pedidos', PedidoViewSet)  # Registrar el ViewSet de Pedido
 urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar en los htmls
                
     path('', views.index, name='index'),
@@ -66,6 +74,15 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     #PARA LA API CONSUMIDA PROPIA DE LA PÁGINA RAWGIO
     path('proximos-lanzamientos/', views.proximos_lanzamientos, name='proximos_lanzamientos'),
     path('juego/<int:juego_id>/', views.detalle_juego, name='detalle_juego'),
-
+    #PATH PARA LA ORDEN DE PEDIDO
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Para obtener el token JWT
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Para refrescar el token JWT
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),  # Verificar token JWT
+    
+    #PATHS PARA LOS PEDIDOS
+    path('pedidos/', views.ListarPedidosView.as_view(), name='listar_pedidos'),
+    path('pedidos/crear/', views.CrearPedidoView.as_view(), name='crear_pedido'),
+    path('pedidos/editar/<int:pk>/', views.EditarPedidoView.as_view(), name='editar_pedido'),
+    path('pedidos/eliminar/<int:pk>/', views.EliminarPedidoView.as_view(), name='eliminar_pedido'),
 
 ]
