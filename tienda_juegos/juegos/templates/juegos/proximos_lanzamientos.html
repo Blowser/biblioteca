@@ -16,7 +16,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ juego.name }}</h5>
                         <p class="card-text">Fecha de lanzamiento: {{ juego.released }}</p>
-                        <a href="{{ juego.website }}" class="btn btn-primary">Más información</a>
+                        <a href="{% url 'detalle_juego' juego.id %}" class="btn btn-primary">Más información</a>
                     </div>
                 </div>
             </div>
