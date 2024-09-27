@@ -332,7 +332,6 @@ import requests
 from django.shortcuts import render
 
 def proximos_lanzamientos(request):
-    # URL de la API de RAWG con tus parámetros
     url = 'https://api.rawg.io/api/games'
     params = {
         'key': '9fe0cbc8cbbe416ca00a5a0f7356d8fe',  # Aquí mi API key de RAWG, Free 2000 request por período
@@ -352,3 +351,18 @@ def proximos_lanzamientos(request):
 
     # Renderizar el template con la lista de juegos
     return render(request, 'juegos/proximos_lanzamientos.html', {'juegos': juegos})
+
+def detalle_juego(request, juego_id):
+    url = f'https://api.rawg.io/api/games/{juego_id}'
+    params = {
+        'key': '9fe0cbc8cbbe416ca00a5a0f7356d8fe'  
+    }
+    
+    response = requests.get(url, params=params)
+    
+    if response.status_code == 200:
+        juego = response.json()  # Datos del juego
+    else:
+        juego = None  # En caso de error
+
+    return render(request, 'juegos/detalle_juego.html', {'juego': juego})
