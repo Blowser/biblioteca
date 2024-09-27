@@ -368,3 +368,75 @@ def detalle_juego(request, juego_id):
         juego = None  # En caso de error
 
     return render(request, 'juegos/detalle_juego.html', {'juego': juego})
+
+
+from rest_framework import viewsets
+from .serializers import PedidoSerializer
+from .models import Pedido
+
+# ViewSet para el modelo Producto
+class ProductoViewSet(viewsets.ModelViewSet):
+    queryset = Producto.objects.all()  # Recuperar todos los productos de la base de datos
+    serializer_class = ProductoSerializer  # Usar el serializador definido para Producto
+    permission_classes = [IsAuthenticated]  # Requiere que el usuario esté autenticado para acceder
+
+# ViewSet para el modelo Pedido
+class PedidoViewSet(viewsets.ModelViewSet):
+    queryset = Pedido.objects.all()  # Recuperar todos los pedidos
+    serializer_class = PedidoSerializer  # Usar el serializador definido para Pedido
+    permission_classes = [IsAuthenticated]  # Solo usuarios autenticados pueden acceder a este ViewSet
+
+    # Sobrescribimos el método "perform_create" para asignar el usuario logueado
+    def perform_create(self, serializer):
+        # Asignamos el usuario autenticado al pedido
+        serializer.save(usuario=self.request.user)
+        
+# Vista para listar los pedidos
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from .models import Pedido
+from .forms import PedidoForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class ListarPedidosView(LoginRequiredMixin, ListView):
+    model = Pedido
+    template_name = 'juegos/listar_pedidos.html'
+    context_object_name = 'pedidos'
+    login_url = 'login'  # Redirecciona a la página de login si no está autenticado
+
+# Vista para crear un nuevo pedido
+class CrearPedidoView(LoginRequiredMixin, CreateView):
+    model = Pedido
+    form_class = PedidoForm
+    template_name = 'juegos/crear_pedido.html'
+    success_url = reverse_lazy('listar_pedidos')
+    login_url = 'login'  # Redirigir si no está autenticado
+
+    def form_valid(self, form):
+        # Asignar el usuario autenticado al campo usuario
+        form.instance.usuario = self.request.user
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['productos'] = Producto.objects.all()  # Pasar productos al contexto
+        return context
+
+# Vista para editar un pedido existente
+class EditarPedidoView(LoginRequiredMixin, UpdateView):
+    model = Pedido
+    form_class = PedidoForm
+    template_name = 'juegos/editar_pedido.html'
+    success_url = reverse_lazy('listar_pedidos')
+    login_url = 'login'
+
+# Vista para eliminar un pedido existente
+class EliminarPedidoView(LoginRequiredMixin, DeleteView):
+    model = Pedido
+    template_name = 'juegos/eliminar_pedido.html'
+    success_url = reverse_lazy('listar_pedidos')
+    login_url = 'login'
+    
+class PedidoViewSet(viewsets.ModelViewSet):
+    queryset = Pedido.objects.all()
+    serializer_class = PedidoSerializer
