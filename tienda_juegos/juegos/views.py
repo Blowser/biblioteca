@@ -330,14 +330,16 @@ def detalle_categoria(request, categoria_nombre):
 #PARA LA API CONSUMIDA DE LA PÁGINA WEB RAWGIO
 import requests
 from django.shortcuts import render
+#https://rawgthedocs.orels.sh/api/
+#https://api.rawg.io/docs/
 
 def proximos_lanzamientos(request):
     url = 'https://api.rawg.io/api/games'
     params = {
         'key': '9fe0cbc8cbbe416ca00a5a0f7356d8fe',  # Aquí mi API key de RAWG, Free 2000 request por período
-        'platforms': 4,  # PC (el ID de la plataforma PC es 4)
-        'dates': '2024-09-26,2024-12-31',  # Fechas para los próximos lanzamientos
-        'ordering': 'released'
+        'platforms': 4,  # PC (el ID de la plataforma PC es 4: #https://api.rawg.io/api/platforms?key=9fe0cbc8cbbe416ca00a5a0f7356d8fe
+        'dates': '2024-09-26,2024-12-31',  # Fechas para los próximos lanzamientos #https://api.rawg.io/docs/#operation/games_list
+        'ordering': 'released' #https://api.rawg.io/docs/#operation/games_list
     }
 
     response = requests.get(url, params=params)
