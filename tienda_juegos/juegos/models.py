@@ -55,4 +55,25 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
 
+#Modelo Pedido del carrito de compras
+from django.contrib.auth.models import User
+from .models import Producto  # Asegúrate de importar el modelo Producto correctamente
+
+# Modelo del Pedido, que relaciona productos con usuarios
+class Pedido(models.Model):
+    # Cada pedido está relacionado con un producto
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+
+    # Cantidad del producto solicitado
+    cantidad = models.IntegerField(default=1)
+
+    # Fecha en que se realizó el pedido, se agrega automáticamente
+    fecha_pedido = models.DateTimeField(auto_now_add=True)
+
+    # Usuario que realiza el pedido
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    # Definimos cómo se va a mostrar el pedido en representaciones de string
+    def __str__(self):
+        return f"Pedido {self.id} - {self.producto.nombre} por {self.usuario.username}"
 
