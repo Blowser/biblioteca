@@ -1,5 +1,5 @@
 # juegos/urls.py
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.contrib.auth import views as auth_views
 from rest_framework.routers import DefaultRouter
@@ -78,7 +78,7 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Para obtener el token JWT
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Para refrescar el token JWT
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),  # Verificar token JWT
-    
+    path('api/', include(router.urls)),  # Incluir las rutas del router en la URL base 'api/'
     #PATHS PARA LOS PEDIDOS
     path('pedidos/', views.ListarPedidosView.as_view(), name='listar_pedidos'),
     path('pedidos/crear/', views.CrearPedidoView.as_view(), name='crear_pedido'),
