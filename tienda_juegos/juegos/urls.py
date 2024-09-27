@@ -65,6 +65,7 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     
     #PARA LA API CONSUMIDA PROPIA DE LA PÁGINA RAWGIO
     path('proximos-lanzamientos/', views.proximos_lanzamientos, name='proximos_lanzamientos'),
+    path('juego/<int:juego_id>/', views.detalle_juego, name='detalle_juego'),
 
 
 ]
