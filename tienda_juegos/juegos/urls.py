@@ -56,14 +56,15 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     path('carrito/vaciar/', views.vaciar_carrito, name='vaciar_carrito'),
     path('carrito/actualizar/<str:producto_sku>/', views.actualizar_cantidad_carrito, name='actualizar_cantidad_carrito'),
     
-    #PARA LA API CONSUMIDA DE COMIDAS
+    #PARA LA API CONSUMIDA DE EJEMPLO  DE COMIDAS 
     path('categorias-comida/', views.listar_categorias_comida, name='listar_categorias_comida'),
     path('categoria/<str:categoria_nombre>/', detalle_categoria, name='detalle_categoria'),
-        #PARA LA APIREST PROPIA
+    #PARA LA APIREST PROPIA 
     path('api/productos/', views.productos_api, name='productos_api'),
     path('api/productos/<int:pk>/', productos_api, name='producto_detalle'),
-
-
+    
+    #PARA LA API CONSUMIDA PROPIA DE LA PÁGINA RAWGIO
+    path('proximos-lanzamientos/', views.proximos_lanzamientos, name='proximos_lanzamientos'),
 
 
 ]
