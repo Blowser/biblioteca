@@ -287,7 +287,7 @@ def productos_api(request, pk=None):
         producto.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-#PARA LA API CONSUMIDA    
+#PARA LA API CONSUMIDA DEL EJEMPLO COMIDAS   
 import requests
 from django.core.cache import cache
 def listar_categorias_comida(request):
@@ -326,3 +326,29 @@ def detalle_categoria(request, categoria_nombre):
 
     # Renderizar la plantilla con el objeto de la página actual
     return render(request, 'juegos/detalle_categoria.html', {'page_obj': page_obj, 'categoria': categoria_nombre})
+
+#PARA LA API CONSUMIDA DE LA PÁGINA WEB RAWGIO
+import requests
+from django.shortcuts import render
+
+def proximos_lanzamientos(request):
+    # URL de la API de RAWG con tus parámetros
+    url = 'https://api.rawg.io/api/games'
+    params = {
+        'key': '9fe0cbc8cbbe416ca00a5a0f7356d8fe',  # Aquí mi API key de RAWG, Free 2000 request por período
+        'platforms': 4,  # PC (el ID de la plataforma PC es 4)
+        'dates': '2024-09-26,2024-12-31',  # Fechas para los próximos lanzamientos
+        'ordering': 'released'
+    }
+
+    response = requests.get(url, params=params)
+
+    # Verificar si la respuesta es exitosa
+    if response.status_code == 200:
+        data = response.json()
+        juegos = data['results']  # Aquí están los juegos obtenidos
+    else:
+        juegos = []
+
+    # Renderizar el template con la lista de juegos
+    return render(request, 'juegos/proximos_lanzamientos.html', {'juegos': juegos})
