@@ -1,3 +1,10 @@
+{% extends 'juegos/base_crud.html' %}
+
+{% block title %}Crear Pedido{% endblock %}
+
+{% block content %}
+<h2 class="my-4">Crear Pedido</h2>
+
 <form method="post">
     {% csrf_token %}
     <div class="mb-3">
@@ -16,3 +23,4 @@
 
     <button type="submit" class="btn btn-primary">Crear Pedido</button>
 </form>
+{% endblock %}
