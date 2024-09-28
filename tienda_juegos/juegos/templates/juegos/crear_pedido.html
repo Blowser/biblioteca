@@ -11,7 +11,8 @@
         <label for="producto" class="form-label">Producto</label>
         <select id="producto" name="producto" class="form-select" required>
             {% for producto in productos %}
-            <option value="{{ producto.id }}">{{ producto.nombre }}</option>
+                <!-- Aquí es donde debes asegurarte de usar producto.pk -->
+                <option value="{{ producto.pk }}">{{ producto.nombre }}</option>
             {% endfor %}
         </select>
     </div>
@@ -23,4 +24,5 @@
 
     <button type="submit" class="btn btn-primary">Crear Pedido</button>
 </form>
+
 {% endblock %}
