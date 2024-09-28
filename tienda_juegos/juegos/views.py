@@ -413,17 +413,32 @@ class CrearPedidoView(LoginRequiredMixin, CreateView):
     form_class = PedidoForm
     template_name = 'juegos/crear_pedido.html'
     success_url = reverse_lazy('lista_pedidos')
-    login_url = 'iniciar_sesion'  # Redirigir si no está autenticado
 
     def form_valid(self, form):
-        # Asignar el usuario autenticado al campo usuario
+        # Asignar el usuario autenticado al pedido
         form.instance.usuario = self.request.user
+
+        # Buscar el producto seleccionado por su ID desde el formulario
+        producto_id = self.request.POST.get('producto')
+        if producto_id:
+            form.instance.producto = Producto.objects.get(id=producto_id)
+
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['productos'] = Producto.objects.all()  # Pasar productos al contexto
         return context
+
+    def form_valid(self, form):
+        print(form.cleaned_data)  # Verificar los datos que se están enviando
+        form.instance.usuario = self.request.user
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        print(form.errors)  # Esto mostrará los errores del formulario si los hay
+        return super().form_invalid(form)
+
 
 # Vista para editar un pedido existente
 class EditarPedidoView(LoginRequiredMixin, UpdateView):
