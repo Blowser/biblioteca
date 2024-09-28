@@ -72,16 +72,20 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     #PARA LA API CONSUMIDA PROPIA DE LA PÁGINA RAWGIO
     path('proximos-lanzamientos/', views.proximos_lanzamientos, name='proximos_lanzamientos'),
     path('juego/<int:juego_id>/', views.detalle_juego, name='detalle_juego'),
+    
     #PATH PARA LA ORDEN DE PEDIDO
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Para obtener el token JWT
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Para refrescar el token JWT
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),  # Verificar token JWT
     path('api/', include(router.urls)),  # Incluir las rutas del router en la URL base 'api/'
+    
     #PATHS PARA LOS PEDIDOS
     path('pedidos/', views.ListaPedidosView.as_view(), name='lista_pedidos'),
     path('pedidos/crear/', views.CrearPedidoView.as_view(), name='crear_pedido'),
     path('pedidos/editar/<int:pk>/', views.EditarPedidoView.as_view(), name='editar_pedido'),
     path('pedidos/eliminar/<int:pk>/', views.EliminarPedidoView.as_view(), name='eliminar_pedido'),
+    
+    #PATH PARA FINALIZAR COMPRA CARRITO
     path('carrito/finalizar/', views.finalizar_compra, name='finalizar_compra'),
 
 ]
