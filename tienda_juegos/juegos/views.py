@@ -463,22 +463,20 @@ class PedidoViewSet(viewsets.ModelViewSet):
 @login_required
 def finalizar_compra(request):
     carrito = request.session.get('carrito', {})
-
-    if carrito:
-        # Crear pedidos a partir del carrito
-        for producto_sku, datos_producto in carrito.items():
-            producto = Producto.objects.get(sku=producto_sku)
-            cantidad = datos_producto['cantidad']
-            Pedido.objects.create(
-                usuario=request.user,
-                producto=producto,
-                cantidad=cantidad
-            )
-
-        # Vaciar el carrito después de crear los pedidos
-        request.session['carrito'] = {}
-
-        # Redirigir al listado de pedidos
-        return redirect('lista_pedidos')
-
-    return redirect('ver_carrito')
+    
+    # Crear pedidos a partir del carrito
+    for producto_sku, producto_data in carrito.items():
+        producto = get_object_or_404(Producto, sku=producto_sku)
+        cantidad = producto_data['cantidad']
+        
+        # Crear el pedido para el usuario logueado
+        Pedido.objects.create(producto=producto, cantidad=cantidad, usuario=request.user)
+    
+    # Vaciar el carrito después de finalizar la compra
+    request.session['carrito'] = {}
+    
+    # Redirigir según el tipo de usuario
+    if request.user.is_superuser:
+        return redirect('lista_pedidos')  # Si es superuser, va a la lista de pedidos
+    else:
+        return redirect('index')  # Si no es superuser, redirige al index
