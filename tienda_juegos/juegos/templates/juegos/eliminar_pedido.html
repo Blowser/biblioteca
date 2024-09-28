@@ -1,20 +1,15 @@
-{% extends 'juegos/base_catalogo.html' %}
+{% extends 'juegos/base_crud.html' %}
 
-{% block title %}Eliminar Pedido{% endblock %}
+{% block title %}Confirmar Eliminación de Pedido{% endblock %}
 
 {% block content %}
-<h2 class="my-4">Eliminar Pedido</h2>
+<h2 class="my-4">Confirmar Eliminación</h2>
 
-<p>¿Estás seguro de que deseas eliminar el siguiente pedido?</p>
-
-<ul>
-    <li><strong>Producto:</strong> {{ pedido.producto.nombre }}</li>
-    <li><strong>Cantidad:</strong> {{ pedido.cantidad }}</li>
-</ul>
+<p>¿Estás seguro de que deseas eliminar el pedido {{ pedido.id }}?</p>
 
 <form method="post">
     {% csrf_token %}
     <button type="submit" class="btn btn-danger">Eliminar</button>
-    <a href="{% url 'listar_pedidos' %}" class="btn btn-secondary">Cancelar</a>
+    <a href="{% url 'lista_pedidos' %}" class="btn btn-secondary">Cancelar</a>
 </form>
 {% endblock %}
