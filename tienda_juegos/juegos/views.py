@@ -458,3 +458,27 @@ class EliminarPedidoView(LoginRequiredMixin, DeleteView):
 class PedidoViewSet(viewsets.ModelViewSet):
     queryset = Pedido.objects.all()
     serializer_class = PedidoSerializer
+    
+# COMPLETAR COMPRA DEL CARRITO:
+@login_required
+def finalizar_compra(request):
+    carrito = request.session.get('carrito', {})
+
+    if carrito:
+        # Crear pedidos a partir del carrito
+        for producto_sku, datos_producto in carrito.items():
+            producto = Producto.objects.get(sku=producto_sku)
+            cantidad = datos_producto['cantidad']
+            Pedido.objects.create(
+                usuario=request.user,
+                producto=producto,
+                cantidad=cantidad
+            )
+
+        # Vaciar el carrito después de crear los pedidos
+        request.session['carrito'] = {}
+
+        # Redirigir al listado de pedidos
+        return redirect('lista_pedidos')
+
+    return redirect('ver_carrito')
