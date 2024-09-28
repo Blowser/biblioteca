@@ -5,6 +5,8 @@ from .forms import ProductoForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth import authenticate, login
+import requests
+from django.views.generic import TemplateView
 
 
 
@@ -394,7 +396,7 @@ class PedidoViewSet(viewsets.ModelViewSet):
 # Vista para listar los pedidos
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .models import Pedido
+from .models import Pedido, Producto
 from .forms import PedidoForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
