@@ -166,7 +166,8 @@ LOGOUT_REDIRECT_URL = 'login'
 # Para el sistema de recuperación de contraseñas
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'iniciar_sesion'
+
 
 LOGOUT_REDIRECT_URL = 'index' 
 
