@@ -29,7 +29,6 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     path('registrarcuenta/', views.registrar_cuenta, name='registrar_cuenta'),
     path('modificarperfil/', views.modificar_perfil, name='modificar_perfil'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    
     #paths de recuperación de contraseña:
     path('recuperarcontrasena/', auth_views.PasswordResetView.as_view(template_name='juegos/recuperarcontrasena.html'), name='password_reset'),
     path('recuperarcontrasena/enviado/', auth_views.PasswordResetDoneView.as_view(template_name='juegos/recuperarcontrasenadone.html'), name='password_reset_done'),
@@ -37,8 +36,6 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     path('recuperarcontrasena/completo/', auth_views.PasswordResetCompleteView.as_view(template_name='juegos/recuperarcontrasenacomplete.html'), name='password_reset_complete'),
 
  
-
-
     #paths para el catálogo
     path('detalles/elderscroll/', views.detalles_elderscroll, name='detalles_elderscroll'),
     path('detalles/fc24/', views.detalles_fc24, name='detalles_fc24'),
