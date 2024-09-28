@@ -6,6 +6,7 @@ from rest_framework.routers import DefaultRouter
 from .views import ProductoViewSet, PedidoViewSet
 from .views import productos_api
 from .views import detalle_categoria
+
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from .views import ListarPedidosView, CrearPedidoView, EditarPedidoView, EliminarPedidoView
 
