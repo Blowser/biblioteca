@@ -56,6 +56,7 @@ class Producto(models.Model):
         return self.nombre
 
 #Modelo Pedido del carrito de compras
+from django.db import models
 from django.contrib.auth.models import User
 from .models import Producto  # Asegúrate de importar el modelo Producto correctamente
 
