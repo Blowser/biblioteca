@@ -21,8 +21,7 @@
         <div class="mt-4">
             <h3>Total: CLP${{ total }}</h3>
             <a href="{% url 'vaciar_carrito' %}" class="btn btn-warning">Vaciar carrito</a>
-            <a href="{% url 'crear_pedido' %}" class="btn btn-success">Finalizar compra</a>
-
+            <a href="{% url 'finalizar_compra' %}" class="btn btn-success">Finalizar compra</a>
         </div>
     {% else %}
         <p>Tu carrito está vacío.</p>
