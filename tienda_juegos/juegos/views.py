@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login
 import requests
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
+from django.http import HttpResponse
 
 
 
@@ -400,9 +401,9 @@ class PedidoViewSet(viewsets.ModelViewSet):
         
 # Vista para listar los pedidos
 
-class ListarPedidosView(LoginRequiredMixin, ListView):
+class ListaPedidosView(LoginRequiredMixin, ListView):
     model = Pedido
-    template_name = 'juegos/listar_pedidos.html'
+    template_name = 'juegos/lista_pedidos.html'
     context_object_name = 'pedidos'
     login_url = 'iniciar_sesion'  # Redirecciona a la página de login si no está autenticado
 
@@ -411,7 +412,7 @@ class CrearPedidoView(LoginRequiredMixin, CreateView):
     model = Pedido
     form_class = PedidoForm
     template_name = 'juegos/crear_pedido.html'
-    success_url = reverse_lazy('listar_pedidos')
+    success_url = reverse_lazy('lista_pedidos')
     login_url = 'iniciar_sesion'  # Redirigir si no está autenticado
 
     def form_valid(self, form):
@@ -429,14 +430,14 @@ class EditarPedidoView(LoginRequiredMixin, UpdateView):
     model = Pedido
     form_class = PedidoForm
     template_name = 'juegos/editar_pedido.html'
-    success_url = reverse_lazy('listar_pedidos')
+    success_url = reverse_lazy('lista_pedidos')
     login_url = 'iniciar_sesion'
 
 # Vista para eliminar un pedido existente
 class EliminarPedidoView(LoginRequiredMixin, DeleteView):
     model = Pedido
     template_name = 'juegos/eliminar_pedido.html'
-    success_url = reverse_lazy('listar_pedidos')
+    success_url = reverse_lazy('lista_pedidos')
     login_url = 'iniciar_sesion'
     
 class PedidoViewSet(viewsets.ModelViewSet):
