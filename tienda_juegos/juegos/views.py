@@ -1,5 +1,5 @@
 # juegos/views.py
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from .models import Producto
 from .forms import ProductoForm
 from django.contrib.auth.forms import UserCreationForm
@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth import authenticate, login
 import requests
 from django.views.generic import TemplateView
+from django.contrib.auth import views as auth_views
 
 
 
@@ -251,6 +252,7 @@ from .models import Producto
 from .serializers import ProductoSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
+from rest_framework import viewsets
 #API PROPIA
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
@@ -374,8 +376,11 @@ def detalle_juego(request, juego_id):
 
 from rest_framework import viewsets
 from .serializers import PedidoSerializer
-from .models import Pedido
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from .models import Pedido, Producto
+from .forms import PedidoForm
 # ViewSet para el modelo Producto
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()  # Recuperar todos los productos de la base de datos
@@ -394,17 +399,12 @@ class PedidoViewSet(viewsets.ModelViewSet):
         serializer.save(usuario=self.request.user)
         
 # Vista para listar los pedidos
-from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .models import Pedido, Producto
-from .forms import PedidoForm
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 class ListarPedidosView(LoginRequiredMixin, ListView):
     model = Pedido
     template_name = 'juegos/listar_pedidos.html'
     context_object_name = 'pedidos'
-    login_url = 'login'  # Redirecciona a la página de login si no está autenticado
+    login_url = 'iniciar_sesion'  # Redirecciona a la página de login si no está autenticado
 
 # Vista para crear un nuevo pedido
 class CrearPedidoView(LoginRequiredMixin, CreateView):
@@ -412,7 +412,7 @@ class CrearPedidoView(LoginRequiredMixin, CreateView):
     form_class = PedidoForm
     template_name = 'juegos/crear_pedido.html'
     success_url = reverse_lazy('listar_pedidos')
-    login_url = 'login'  # Redirigir si no está autenticado
+    login_url = 'iniciar_sesion'  # Redirigir si no está autenticado
 
     def form_valid(self, form):
         # Asignar el usuario autenticado al campo usuario
@@ -430,14 +430,14 @@ class EditarPedidoView(LoginRequiredMixin, UpdateView):
     form_class = PedidoForm
     template_name = 'juegos/editar_pedido.html'
     success_url = reverse_lazy('listar_pedidos')
-    login_url = 'login'
+    login_url = 'iniciar_sesion'
 
 # Vista para eliminar un pedido existente
 class EliminarPedidoView(LoginRequiredMixin, DeleteView):
     model = Pedido
     template_name = 'juegos/eliminar_pedido.html'
     success_url = reverse_lazy('listar_pedidos')
-    login_url = 'login'
+    login_url = 'iniciar_sesion'
     
 class PedidoViewSet(viewsets.ModelViewSet):
     queryset = Pedido.objects.all()
