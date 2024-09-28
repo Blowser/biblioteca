@@ -8,7 +8,7 @@ from .views import productos_api
 from .views import detalle_categoria
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
-from .views import ListarPedidosView, CrearPedidoView, EditarPedidoView, EliminarPedidoView
+from .views import ListaPedidosView, CrearPedidoView, EditarPedidoView, EliminarPedidoView
 
 router = DefaultRouter()
 router.register(r'productos', ProductoViewSet)  # Registrar el ViewSet de Producto
@@ -78,7 +78,7 @@ urlpatterns = [#html, luego nombre funcion, finalmente name, el name para llamar
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),  # Verificar token JWT
     path('api/', include(router.urls)),  # Incluir las rutas del router en la URL base 'api/'
     #PATHS PARA LOS PEDIDOS
-    path('pedidos/', views.ListarPedidosView.as_view(), name='listar_pedidos'),
+    path('pedidos/', views.ListaPedidosView.as_view(), name='lista_pedidos'),
     path('pedidos/crear/', views.CrearPedidoView.as_view(), name='crear_pedido'),
     path('pedidos/editar/<int:pk>/', views.EditarPedidoView.as_view(), name='editar_pedido'),
     path('pedidos/eliminar/<int:pk>/', views.EliminarPedidoView.as_view(), name='eliminar_pedido'),
