@@ -15,7 +15,8 @@ import cl.duoc.biblioteca.service.LibroService;
 
 
 // Import para darle el estado deseado a las respuestas
-// codigo 200 OK, codigo 404 Not Found, codigo 500 Internal Server Error, etc.
+// Permite controlar explícitamente los códigos
+// HTTP devueltos por la API (200, 201, 204, 404, etc.).
 // ANTES:
 // public Libro obtenerPorId(...)
 //
