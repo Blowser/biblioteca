@@ -1,0 +1,6 @@
+cl\duoc\biblioteca\model\Libro.class
+cl\duoc\biblioteca\service\LibroService.class
+cl\duoc\biblioteca\repository\LibroRepository.class
+cl\duoc\biblioteca\controller\HelloController.class
+cl\duoc\biblioteca\BibliotecaApplication.class
+cl\duoc\biblioteca\controller\LibroController.class
