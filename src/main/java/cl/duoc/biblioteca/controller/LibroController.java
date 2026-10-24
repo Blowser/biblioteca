@@ -14,6 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import cl.duoc.biblioteca.service.LibroService;
 
 
+// Import para darle el estado deseado a las respuestas
+// codigo 200 OK, codigo 404 Not Found, codigo 500 Internal Server Error, etc.
+// ANTES:
+// public Libro obtenerPorId(...)
+//
+// DESPUÉS:
+// public ResponseEntity<Libro> obtenerPorId(...)
+//
+// El cambio permite devolver códigos HTTP apropiados
+// además de los datos del recurso solicitado.
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+
 
 // RestController Indica que la clase es un controlador de Spring MVC y que los métodos de esta clase manejarán solicitudes HTTP y devolverán respuestas HTTP.
 // Indica que una clase expone endpoints HTTP y puede responder solicitudes REST.
@@ -105,14 +119,22 @@ public class LibroController {
     @GetMapping
     public List<Libro> obtenerTodos() {
 
+        // devuelve una respuesta HTTP con el estado 200 OK y el cuerpo de la respuesta contiene la lista de libros obtenida del servicio.
         return service.obtenerTodos();
     }
 
     @GetMapping("/{id}")
-    public Libro obtenerPorId(
+    public ResponseEntity<Libro> obtenerPorId(
             @PathVariable Long id) {
 
-        return service.obtenerPorId(id);
+        Libro libro = service.obtenerPorId(id);
+
+        if (libro != null) {
+            //devuelve una respuesta HTTP con el estado 200 OK y el cuerpo de la respuesta contiene el libro encontrado.
+            return ResponseEntity.ok(libro);
+        }
+        // Si el libro no se encuentra, devuelve una respuesta HTTP con el estado 404 Not Found y un cuerpo vacío.
+        return ResponseEntity.notFound().build();
     }
 
     // CREAR LIBRO
@@ -120,10 +142,15 @@ public class LibroController {
     //Se utiliza para enviar datos al servidor y crear nuevos recursos.
     //RequestBody convierte automáticamente el cuerpo de una solicitud HTTP en un objeto Java.
     @PostMapping
-    public Libro crearLibro(
+    public ResponseEntity<Libro> crearLibro(
             @RequestBody Libro libro) {
 
-        return service.agregarLibro(libro);
+        Libro nuevoLibro =
+                service.agregarLibro(libro);
+        // devuelve una respuesta HTTP con el estado 201 Created y el cuerpo de la respuesta contiene el libro recién creado.        
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(nuevoLibro);
     }
 
     // ACTUALIZAR LIBRO
@@ -131,11 +158,19 @@ public class LibroController {
     // Se utiliza para actualizar recursos existentes.
     // Obtiene el ID desde la URL y recibe los nuevos datos desde el cuerpo de la solicitud.
     @PutMapping("/{id}")
-    public Libro actualizarLibro(
+    public ResponseEntity<Libro> actualizarLibro(
             @PathVariable Long id,
             @RequestBody Libro libro) {
 
-        return service.actualizarLibro(id, libro);
+        Libro actualizado =
+                service.actualizarLibro(id, libro);
+
+        if (actualizado != null) {
+            // devuelve una respuesta HTTP con el estado 200 OK y el cuerpo de la respuesta contiene el libro actualizado.
+            return ResponseEntity.ok(actualizado);
+        }
+        // Si el libro no se encuentra, devuelve una respuesta HTTP con el estado 404 Not Found y un cuerpo vacío.
+        return ResponseEntity.notFound().build();
     }
 
     // ELIMINAR LIBRO
@@ -143,10 +178,17 @@ public class LibroController {
     // Se utiliza para eliminar recursos existentes.
     // Obtiene el ID desde la URL y realiza la eliminación del recurso correspondiente.
     @DeleteMapping("/{id}")
-    public Libro eliminarLibro(
+    public ResponseEntity<Void> eliminarLibro(
             @PathVariable Long id) {
 
-        return service.eliminarLibro(id);
+        Libro libro = service.eliminarLibro(id);
+
+        if (libro != null) {
+            // devuelve una respuesta HTTP con el estado 204 No Content, indicando que la eliminación fue exitosa y no hay contenido adicional que devolver.
+            return ResponseEntity.noContent().build();
+        }
+        // Si el libro no se encuentra, devuelve una respuesta HTTP con el estado 404 Not Found y un cuerpo vacío.
+        return ResponseEntity.notFound().build();
     }
 
 
